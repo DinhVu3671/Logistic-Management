@@ -1,0 +1,15 @@
+{
+    "initializationType": {
+        "title":"Lựa chọn hình thức khởi tạo",
+        "quickCreate":{
+            "title":"Tạo nhanh:",
+            "note":"Các tham số được tự động cấu hình",
+            "button":"Tạo nhanh"
+        },
+        "customize":{
+            "title":"Tùy chỉnh:",
+            "note":"Có thể tùy biến các tham số thuật toán",
+            "button":"Tùy chỉnh"
+        }
+    }
+}

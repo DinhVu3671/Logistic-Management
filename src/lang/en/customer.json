@@ -1,0 +1,48 @@
+{
+    "customers": {
+       "title":"Danh sách khách hàng ",
+       "pages":" trang",
+       "customer":" khách hàng",
+       "ordinalNum":"STT",
+       "name":"Tên khách hàng",
+       "code":"Mã khách hàng",
+       "longitude":"Kinh độ",
+       "latitude":"Vĩ độ", 
+       "address":"Địa chỉ", 
+       "startTimeStr":"Thời điểm mở cửa", 
+       "endTimeStr":"Thời điểm đóng cửa",
+       "action":"Thao tác",
+       "detail":"Chi tiết",
+       "edit":"Sửa",
+       "delete":"Xóa",
+       "add":"Thêm",
+       "deleteConfirm":{
+           "title":"Xóa khách hàng",
+           "header":"Xác nhận xóa",
+           "body":"Xóa khách hàng ",
+           "note":" có thể gây ảnh hưởng tới dữ liệu khác. Bạn có muốn xóa ?",
+           "yes":"Xác nhận",
+           "cancel":"Hủy"
+       }
+    },
+    "addCustomer":{
+        "title":"Tạo khách hàng",
+        "form":"Mẫu khách hàng",
+        "name":"Tên khách hàng",
+        "namePlace":"VD: Cửa hàng số 1",
+        "address":"Địa chỉ",
+        "addressPlace":"VD: Số 128 đường Nguyễn Du, quận...",
+        "latitude":"Vĩ độ",
+        "latitudePlace":"VD: 21.0656984",
+        "longitude":"Kinh độ",
+        "longitudePlace":"VD: ",
+        "startTime":"Thời điểm mở cửa",
+        "startTimePlace":"VD: ",
+        "endTime":"Thời điểm đóng cửa",
+        "endTimePlace":"VD: ",
+        "penaltyCost":"Phí phạt đơn vị",
+        "penaltyCostPlace":"VD: ",
+        "submit":"Gửi",
+        "cancel":"Hủy"
+    }
+}

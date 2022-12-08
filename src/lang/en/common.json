@@ -1,0 +1,15 @@
+{
+    "initializationType": {
+        "title":"Select initialization method",
+        "quickCreate":{
+            "title":"Quick create:",
+            "note":"Parameters are automatically configured",
+            "button":"Quick create"
+        },
+        "customize":{
+            "title":"Customize:",
+            "note":"Algorithm parameters can be customized",
+            "button":"Customize"
+        }
+    }
+}

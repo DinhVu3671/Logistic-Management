@@ -1,0 +1,155 @@
+{
+    "initializationType": {
+        "title":"Lựa chọn hình thức khởi tạo",
+        "quickCreate":{
+            "title":"Tạo nhanh:",
+            "note":"Các tham số được tự động cấu hình",
+            "button":"Tạo nhanh"
+        },
+        "customize":{
+            "title":"Tùy chỉnh:",
+            "note":"Có thể tùy biến các tham số thuật toán",
+            "button":"Tùy chỉnh"
+        }
+    },
+    "clusteringCustomer":{
+        "title":"Phân cụm khách hàng",
+        "back":"Quay lại",
+        "next":"Tiếp",
+        "ordinalNumber":"STT",
+        "customerCode":"Mã khách hàng",
+        "customerName":"Tên khách hàng",
+        "depotCluster":"Phân cụm kho",
+        "state":"Tình trạng hàng",
+        "available":"đáp ứng",
+        "unavailable":"không đáp ứng",
+        "confirm":{
+            "title":"Chỉnh sửa phân cụm kho",
+            "body":"Xác nhận thay đổi phân cụm kho của khách hàng",
+            "yes":"Xác nhận",
+            "cancel":"Hủy"
+        }
+    },
+    "parameterConfiguration":{
+        "title":"Cấu hình thuật toán",
+        "preparingData":"Chuẩn bị Dữ liệu",
+        "next":"Tiếp",
+        "basic":{
+            "title":"Cơ bản",
+            "travelingTimeLimit":"Giới hạn giờ chạy",
+            "maxDrivingTime":"Thời gian chạy xe tối đa(giờ)",
+            "maxDrivingTimePlace":"VD: 10h/ngày",
+            "travelingDistanceLimit":"Giới hạn quãng đường",
+            "maxDrivingDistance":"Quãng đường chạy tối đa(km)",
+            "maxDrivingDistancePlace":"VD: 200km/ngày",
+            "maximumAlgorithmRunningTime":"Thời gian chạy thuật toán tối đa (phút)",
+            "maximumAlgorithmRunningTimePlace":"VD: 2p",
+            "isAllowedViolateTW":"Cho phép vi phạm khung thời gian",
+            "isExcludeProduct":"Tự động loại trừ hàng hóa"
+        },
+        "advance":{
+            "title":"Nâng cao",
+            "popSize":"Kích thước quần thể (cá thể)",
+            "popSizePlace":"VD: 100(cá thể)",
+            "eliteRate":"Tỷ lệ tập tinh hoa (%)",
+            "eliteRatePlace":"VD: 15%",
+            "maxGen":"Số thế hệ tối đa được sinh",
+            "maxGenPlace":"VD: 100",
+            "maxGenNotImprove":"Số thế hệ tối đa không cải thiện",
+            "maxGenNotImprovePlace":"VD: 50",
+            "probCrossover":"Xác suất Lai ghép",
+            "probCrossoverPlace":"VD: 0,96",
+            "probMutation":"Xác suất Đột biến",
+            "probMutationPlace":"VD: 0,16",
+            "tournamentSize":"Số cá thể được chọn",
+            "tournamentSizePlace":"VD: 20",
+            "selectionRate":"Tỷ lệ tập chọn lọc",
+            "selectionRatePlace":"VD: 20",
+            "exponentialFactor":"Hệ số mũ trong hàm fitness",
+            "exponentialFactorPlace":"VD: 1"
+        }
+    },
+    "progress":{
+        "routeInitialization":{
+            "title":"Tự động tạo lộ trình",
+            "body":"Xác nhận khởi tạo lộ trình?",
+            "note":"Quá trình khởi tạo có thể mất vài phút",
+            "yes":"Xác nhận",
+            "cancel":"Hủy"
+        },
+        "inProgress":{
+            "title":"Đang khởi tạo lộ trình tối ưu"
+        },
+        "initFail":{
+            "title":"Thông báo",
+            "body":"Khởi tạo lộ trình thất bại",
+            "note":"tùy chỉnh cấu hình để tìm được giải pháp khả thi"
+        },
+        "routeReInitialization":{
+            "title":"Khởi tạo lại lộ trình",
+            "body":"Khởi tạo lộ trình thất bại",
+            "note":"tự động tùy chỉnh cấu hình để tìm được giải pháp khả thi",
+            "yes":"Xác nhận",
+            "cancel":"Hủy"
+        }
+    },
+    "solutionRoute":{
+        "initSuccess":{
+            "title":"Thông báo",
+            "body":"Khởi tạo lộ trình thành công"
+        },
+        "buttonTimeline":{
+            "show":"Hiện Timeline",
+            "hide":"Ẩn Timeline"
+        }
+    },
+    "timeline":{
+        "totalCost":"Tổng chi phí: ",
+        "totalAmount":"Doanh thu: ",
+        "revenue":"Lợi nhuận: ",
+        "efficiency":"Hiệu suất: ",
+        "numberVehicle":"Số xe: ",
+        "numberVehicleUnit":" xe",
+        "averageNumOrder":"Số đơn trung bình: ",
+        "averageNumOrderUnit":" (đơn/xe)",
+        "averageTravelTime":"Thời gian đi trung bình: ",
+        "averageTravelTimeUnit":" (phút/xe)",
+        "averageDistance":"Quãng đường trung bình: ",
+        "averageDistanceUnit":" (km/xe)",
+        "vehicleName":"Tên xe",
+        "save":"Lưu",
+        "rightTitle":"Thời gian di chuyển(phút)/ Tổng quãng đường(km)",
+        "focusJourney":{
+            "totalCost":"Tổng chi phí: ",
+            "penaltyCost":"Phí phạt: ",
+            "totalAmount":"Doanh thu: ",
+            "revenue":"Lợi nhuận: ",
+            "efficiency":"Hiệu suất: ",
+            "orderNum":"Số đơn: ",
+            "orderNumUnit":" đơn",
+            "routeNum":"Số chuyến: ",
+            "routeNumUnit":" chuyến"
+        },
+        "notification":{
+            "title":"Thông báo",
+            "body":"Khởi tạo lộ trình thành công"
+        },
+        "changeOrder":{
+            "title":"Xác nhận chuyển đơn hàng",
+            "changeOrder":"Xác nhận chuyển đơn hàng",
+            "from":" từ hành trình của ",
+            "to":" tới hành trình của ",
+            "yes":"Xác nhận",
+            "cancel":"Hủy"
+        },
+        "changeSolution":{
+            "title":"Timeline của Giải pháp ",
+            "solution":"Giải pháp "
+        },
+        "changeJourney":{
+            "title":"Hành trình ",
+            "allJourney":"Tất cả xe"
+        }
+    }
+    
+}

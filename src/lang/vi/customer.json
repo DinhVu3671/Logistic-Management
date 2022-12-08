@@ -1,0 +1,42 @@
+{
+    "customers": {
+       "title":"Danh sách khách hàng ",
+       "pages":" trang",
+       "customer":" khách hàng",
+       "ordinalNum":"STT",
+       "name":"Tên khách hàng",
+       "code":"Mã khách hàng",
+       "longitude":"Kinh độ",
+       "latitude":"Vĩ độ", 
+       "address":"Địa chỉ", 
+       "startTimeStr":"Thời điểm mở cửa", 
+       "endTimeStr":"Thời điểm đóng cửa",
+       "action":"Thao tác",
+       "detail":"Chi tiết",
+       "edit":"Sửa",
+       "delete":"Xóa",
+       "add":"Thêm",
+       "deleteConfirm":{
+           "title":"Xóa khách hàng",
+           "header":"Xác nhận xóa",
+           "body":"Xóa khách hàng ",
+           "note":" có thể gây ảnh hưởng tới dữ liệu khác. Bạn có muốn xóa ?",
+           "yes":"Xác nhận",
+           "cancel":"Hủy"
+       }
+    },
+    "addCustomer":{
+        "title":"Tạo khách hàng",
+        "titlePlace":"VD: Cửa hàng số 1",
+        "form":"Mẫu khách hàng",
+        "name":"Tên khách hàng",
+        "address":"Địa chỉ",
+        "latitude":"Vĩ độ",
+        "longitude":"Kinh độ",
+        "startTime":"Thời điểm mở cửa",
+        "endTime":"Thời điểm đóng cửa",
+        "penaltyCost":"Phí phạt đơn vị",
+        "submit":"Gửi",
+        "cancel":"Hủy"
+    }
+}

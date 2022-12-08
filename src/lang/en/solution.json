@@ -1,0 +1,154 @@
+{
+    "initializationType": {
+        "title":"Select initialization method",
+        "quickCreate":{
+            "title":"Quick create:",
+            "note":"Parameters are automatically configured",
+            "button":"Quick create"
+        },
+        "customize":{
+            "title":"Customize:",
+            "note":"Algorithm parameters can be customized",
+            "button":"Customize"
+        }
+    },
+    "parameterConfiguration":{
+        "title":"Algorithm parameter configuration",
+        "preparingData":"Preparing Data",
+        "next":"Next",
+        "basic":{
+            "title":"Basic",
+            "travelingTimeLimit":"Driving time limit",
+            "maxDrivingTime":"Maximum driving time (hours)",
+            "maxDrivingTimePlace":"ex: 10h/d",
+            "travelingDistanceLimit":"Driving distance limit",
+            "maxDrivingDistance":"Maximum driving distance (km)",
+            "maxDrivingDistancePlace":"ex: 200km/d",
+            "maximumAlgorithmRunningTime":"Maximum algorithm running time (minutes)",
+            "maximumAlgorithmRunningTimePlace":"ex: 2minutes",
+            "isAllowedViolateTW":"Time window violation allowed",
+            "isExcludeProduct":"Automatic exclusion of goods"
+        },
+        "advance":{
+            "title":"Advance",
+            "popSize":"Population size (individual)",
+            "popSizePlace":"ex: 100(individual)",
+            "eliteRate":"Percentage of elites (%)",
+            "eliteRatePlace":"ex: 15%",
+            "maxGen":"Maximum number of generations",
+            "maxGenPlace":"ex: 100(gen)",
+            "maxGenNotImprove":"Maximum number of generations does not improve",
+            "maxGenNotImprovePlace":"ex: 50(gen)",
+            "probCrossover":"Probability of Crossover",
+            "probCrossoverPlace":"ex: 0,96",
+            "probMutation":"Probability of Mutation",
+            "probMutationPlace":"ex: 0,16",
+            "tournamentSize":"Number of individuals selected",
+            "tournamentSizePlace":"ex: 20",
+            "selectionRate":"Selected population Rate(%)",
+            "selectionRatePlace":"ex: 20",
+            "exponentialFactor":"The exponent in the fitness function",
+            "exponentialFactorPlace":"ex: 1"
+        }
+    },
+    "clusteringCustomer":{
+        "title":"Customer clustering",
+        "back":"Back",
+        "next":"Next",
+        "ordinalNumber":"Num",
+        "customerCode":"Customer's code",
+        "customerName":"Customer's name",
+        "depotCluster":"Depot clustering",
+        "state":"Item's in stock",
+        "available":"available",
+        "unavailable":"unavailable",
+        "confirm":{
+            "title":"Edit Clustering Customer",
+            "body":"Confirm customer depot clustering change",
+            "yes":"Confirm",
+            "cancel":"Cancel"
+        }
+    },
+    "progress":{
+        "routeInitialization":{
+            "title":"Automatically generate route",
+            "body":"Route initialization confirm?",
+            "note":"Initialization may take a few minutes",
+            "yes":"Confirm",
+            "cancel":"Cancel"
+        },
+        "inProgress":{
+            "title":"Initializing the optimal route"
+        },
+        "initFail":{
+            "title":"Notification",
+            "body":"Route initialization failed",
+            "note":"Customize configuration to find a possible solution"
+        },
+        "routeReInitialization":{
+            "title":"Re-initialize route",
+            "body":"Route initialization failed",
+            "note":"auto-configuration to find possible solutions",
+            "yes":"Confirm",
+            "cancel":"Cancel"
+        }
+    },
+    "solutionRoute":{
+        "initSuccess":{
+            "title":"Notification",
+            "body":"Successful route creation"
+        },
+        "buttonTimeline":{
+            "show":"Show Timeline",
+            "hide":"Hide Timeline"
+        }
+    },
+    "timeline":{
+        "totalCost":"Total cost: ",
+        "totalAmount":"Revenue: ",
+        "revenue":"Profit: ",
+        "efficiency":"Efficiency: ",
+        "numberVehicle":"Number Vehicle: ",
+        "numberVehicleUnit":" vehicle",
+        "averageNumOrder":"Average number of orders: ",
+        "averageNumOrderUnit":" (order/vehicle)",
+        "averageTravelTime":"Average travel time: ",
+        "averageTravelTimeUnit":" (minutes/vehicle)",
+        "averageDistance":"Average distance: ",
+        "averageDistanceUnit":" (km/vehicle)",
+        "vehicleName":"Vehicle name",
+        "save":"Save",
+        "rightTitle":"Travel time(minutes)/Total distance(km)",
+        "focusJourney":{
+            "totalCost":"Total cost: ",
+            "penaltyCost":"Penalty cost: ",
+            "totalAmount":"Revenue: ",
+            "revenue":"Profit: ",
+            "efficiency":"Efficiency: ",
+            "orderNum":"Number Order: ",
+            "orderNumUnit":" order",
+            "routeNum":"Number trip: ",
+            "routeNumUnit":" trip"
+        },
+        "notification":{
+            "title":"Notification",
+            "body":"Khởi tạo lộ trình thành công"
+        },
+        "changeOrder":{
+            "title":"Confirm change order",
+            "changeOrder":"Change order",
+            "from":" from journey of ",
+            "to":" to journey of ",
+            "yes":"Confirm",
+            "cancel":"Cancel"
+        },
+        "changeSolution":{
+            "title":"Timeline of Solution ",
+            "solution":"Solution"
+        },
+        "changeJourney":{
+            "title":"Journey ",
+            "allJourney":"All Journey"
+        }
+    }
+}
