@@ -61,7 +61,7 @@ class TheHeaderDropdown extends Component {
             {
               !this.state.user ?
                 <CImg
-                  src={'avatars/6.jpg'}
+                  src={'avatars/ava.jpg'}
                   className="c-avatar-img"
                   alt="admin@bootstrapmaster.com"
                 />

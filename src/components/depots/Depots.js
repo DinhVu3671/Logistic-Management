@@ -192,7 +192,7 @@ class Depots extends Component {
             depotsData = this.processDepotsData(depotsData);
         return (
             <CContainer>
-                <CRow>
+                <CRow style={{display: "flex", justifyContent: "space-between"}}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -253,7 +253,7 @@ class Depots extends Component {
                     </CCol>
                     <CCol sm='2'>
                         <CCard>
-                            <CButton type="submit" size="md" color="success" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
+                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
                         </CCard>
                     </CCol>
                 </CRow>
@@ -272,8 +272,8 @@ class Depots extends Component {
                                         { key: 'index', label: 'STT' },
                                         { key: 'name', _classes: 'font-weight-bold', label: 'Tên kho' },
                                         { key: 'code', label: 'Mã kho' },
-                                        { key: 'longitude', label: 'Kinh độ' },
-                                        { key: 'latitude', label: 'Vĩ độ' },
+                                        // { key: 'longitude', label: 'Kinh độ' },
+                                        // { key: 'latitude', label: 'Vĩ độ' },
                                         { key: 'address', label: 'Địa chỉ' },
                                         { key: 'startTimeStr', label: 'Thời điểm mở cửa' },
                                         { key: 'endTimeStr', label: 'Thời điểm đóng cửa' },

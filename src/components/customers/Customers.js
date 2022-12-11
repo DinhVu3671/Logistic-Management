@@ -201,7 +201,7 @@ class Customers extends Component {
             customersData = this.processCustomersData(customersData);
         return (
             <CContainer>
-                <CRow>
+                <CRow style={{ display: "flex", justifyContent: "space-between" }}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -215,7 +215,7 @@ class Customers extends Component {
                                 <CModalBody>
                                     <CCard>
                                         <CCardHeader>
-                                        {t("customers.deleteConfirm.header")}
+                                            {t("customers.deleteConfirm.header")}
                                         </CCardHeader>
                                         <CCardBody>
                                             {t("customers.deleteConfirm.body") + this.state.deleteCustomer.code + t("customers.deleteConfirm.note")}
@@ -263,7 +263,7 @@ class Customers extends Component {
                     </CCol>
                     <CCol sm='2'>
                         <CCard>
-                            <CButton type="submit" size="md" color="success" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" />{t("customers.add")}</CButton>
+                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" />{t("customers.add")}</CButton>
                         </CCard>
                         {/* <CCard>
                             <CButton type="submit" size="md" color="success" onClick={() => this.createCustomerData()}><CIcon name="cil-scrubber" /> Create Customer Data</CButton>
@@ -274,8 +274,8 @@ class Customers extends Component {
                     <CCol >
                         <CCard>
                             <CCardHeader>
-                            {t("customers.title")}
-                                    <small className="text-muted"> {totalPages} {t("customers.pages")}</small>
+                                {t("customers.title")}
+                                <small className="text-muted"> {totalPages} {t("customers.pages")}</small>
                                 <small className="text-muted"> {totalCustomers} {t("customers.customer")}</small>
                             </CCardHeader>
                             <CCardBody>
@@ -285,8 +285,8 @@ class Customers extends Component {
                                         { key: 'index', label: t("customers.ordinalNum") },
                                         { key: 'name', _classes: 'font-weight-bold', label: t("customers.name") },
                                         { key: 'code', label: t("customers.code") },
-                                        { key: 'longitude', label: t("customers.longitude") },
-                                        { key: 'latitude', label: t("customers.latitude") },
+                                        // { key: 'longitude', label: t("customers.longitude") },
+                                        // { key: 'latitude', label: t("customers.latitude") },
                                         { key: 'address', label: t("customers.address") },
                                         { key: 'startTimeStr', label: t("customers.startTimeStr") },
                                         { key: 'endTimeStr', label: t("customers.endTimeStr") },
@@ -324,6 +324,22 @@ class Customers extends Component {
                                                             </CButton>
 
                                                         </CButtonGroup>
+                                                    </td>
+                                                )
+                                            },
+                                        'startTimeStr':
+                                            (customersData) => {
+                                                return (
+                                                    <td style={{ textAlign: "center" }}>
+                                                        <span>{customersData.startTimeStr}</span>
+                                                    </td>
+                                                )
+                                            },
+                                        'endTimeStr':
+                                            (customersData) => {
+                                                return (
+                                                    <td style={{ textAlign: "center" }}>
+                                                        <span>{customersData.endTimeStr}</span>
                                                     </td>
                                                 )
                                             },

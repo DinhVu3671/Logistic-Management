@@ -202,7 +202,7 @@ class Orders extends Component {
             ordersData = this.processOrdersData(ordersData);
         return (
             <CContainer>
-                <CRow>
+                <CRow style={{ display: "flex", justifyContent: "space-between" }}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -265,7 +265,7 @@ class Orders extends Component {
                     </CCol>
                     <CCol sm='2'>
                         <CCard>
-                            <CButton type="submit" size="md" color="success" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
+                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
                         </CCard>
                         {/* <CCard>
                             <CButton type="submit" size="md" color="success" onClick={() => this.createOrderData()}><CIcon name="cil-scrubber" /> Create Order Data</CButton>
@@ -275,14 +275,10 @@ class Orders extends Component {
                 <CRow>
                     <CCol >
                         <CCard>
-                            <CCardHeader>
-                                Orders Info
-                                    <small className="text-muted"> {totalPages} pages</small>
-                                <small className="text-muted"> {totalOrders} Orders</small>
-                            </CCardHeader>
                             <CCardBody>
                                 <CDataTable
                                     items={ordersData}
+                                    // border="1px solid #f7f4f4"
                                     fields={[
                                         { key: 'index', label: 'STT' },
                                         { key: 'code', label: 'Mã đơn hàng' },
@@ -357,22 +353,27 @@ class Orders extends Component {
                                                 },
                                         }
                                     }
-
                                 />
-                                <CPagination
-                                    activePage={currentPage}
-                                    onActivePageChange={(page) => this.onPageChanged(page)}
-                                    pages={totalPages}
-                                    doubleArrows={true}
-                                    align="center"
-                                />
+                                <CCardBody style={{ display: "flex", justifyContent: "space-between", padding: "0 0" }}>
+                                    <CCardHeader style={{borderBottom: "none"}}>
+                                        Orders Info
+                                        <small className="text-muted"> {totalPages} pages</small>
+                                        <small className="text-muted"> {totalOrders} Orders</small>
+                                    </CCardHeader>
+                                    <CPagination
+                                        activePage={currentPage}
+                                        onActivePageChange={(page) => this.onPageChanged(page)}
+                                        pages={totalPages}
+                                        doubleArrows={true}
+                                        align="center"
+                                    />
+                                </CCardBody>
                             </CCardBody>
                         </CCard>
                     </CCol>
                 </CRow>
             </CContainer>
         )
-
     }
 }
 export default Orders

@@ -78,7 +78,7 @@ class Vehicles extends Component {
         const editingVehicle = {
             id: editVehicle.id,
             name: editVehicle.name,
-            driverName : editVehicle.driverName,
+            driverName: editVehicle.driverName,
             maxLoadWeight: editVehicle.maxLoadWeight,
             height: editVehicle.height,
             width: editVehicle.width,
@@ -204,7 +204,7 @@ class Vehicles extends Component {
             vehiclesData = this.processVehiclesData(vehiclesData);
         return (
             <CContainer>
-                <CRow>
+                <CRow style={{ display: "flex", justifyContent: "space-between" }}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -267,7 +267,7 @@ class Vehicles extends Component {
                     </CCol>
                     <CCol sm='2'>
                         <CCard>
-                            <CButton type="submit" size="md" color="success" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
+                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
                         </CCard>
                     </CCol>
                 </CRow>
@@ -276,7 +276,7 @@ class Vehicles extends Component {
                         <CCard>
                             <CCardHeader>
                                 Vehicles Info
-                                    <small className="text-muted"> {totalPages} pages</small>
+                                <small className="text-muted"> {totalPages} pages</small>
                                 <small className="text-muted"> {totalVehicles} Vehicles</small>
                             </CCardHeader>
                             <CCardBody>
@@ -286,7 +286,7 @@ class Vehicles extends Component {
                                         { key: 'index', label: 'STT' },
                                         { key: 'name', _classes: 'font-weight-bold', label: 'Tên Xe' },
                                         { key: 'capacity', label: 'Sức chứa(kg/m3)' },
-                                        { key: 'averageFeeTransport', label: 'Phí di chuyển(VND/km)' },
+                                        { key: 'averageFeeTransport', label: 'Phí di chuyển (VND/km)' },
                                         { key: 'averageVelocity', label: 'Vận tốc trung bình(km/h)' },
                                         { key: 'driverName', label: 'Tên lái xe' },
                                         { key: 'type', label: 'Loại xe' },
@@ -304,6 +304,38 @@ class Vehicles extends Component {
                                     // clickableRows
                                     scopedSlots={
                                         {
+                                            'name':
+                                                (item) => {
+                                                    return (
+                                                        <td style={{ width: "15%", fontWeight: 600 }}>
+                                                            <span>{item.name}</span>
+                                                        </td>
+                                                    )
+                                                },
+                                            'averageFeeTransport':
+                                                (item) => {
+                                                    return (
+                                                        <td style={{ width: "7%" }}>
+                                                            <span>{item.averageFeeTransport}</span>
+                                                        </td>
+                                                    )
+                                                },
+                                            'averageVelocity':
+                                                (item) => {
+                                                    return (
+                                                        <td style={{ width: "7%" }}>
+                                                            <span>{item.averageVelocity}</span>
+                                                        </td>
+                                                    )
+                                                },
+                                            'driverName':
+                                                (item) => {
+                                                    return (
+                                                        <td style={{ width: "12%" }}>
+                                                            <span>{item.driverName}</span>
+                                                        </td>
+                                                    )
+                                                },
                                             'capacity':
                                                 (item) => {
                                                     return (
@@ -344,11 +376,11 @@ class Vehicles extends Component {
                                                                 <CButton variant="ghost" color="warning" shape="pill" size="sm"
                                                                     onClick={() => { this.handleEdit(item) }}
                                                                 >Edit
-                                                            </CButton>
+                                                                </CButton>
                                                                 <CButton variant="ghost" color="danger" shape="pill" size="sm"
                                                                     onClick={() => { this.showDeleteModal(item) }}
                                                                 >Delete
-                                                            </CButton>
+                                                                </CButton>
 
                                                             </CButtonGroup>
                                                         </td>

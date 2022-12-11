@@ -194,7 +194,7 @@ class GoodsGroups extends Component {
         const details = this.state.details;
         return (
             <CContainer>
-                <CRow>
+                <CRow style={{display: "flex", justifyContent: "space-between"}}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -257,7 +257,7 @@ class GoodsGroups extends Component {
                     </CCol>
                     <CCol sm='2'>
                         <CCard>
-                            <CButton type="submit" size="md" color="success" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
+                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
                         </CCard>
                     </CCol>
                 </CRow>
