@@ -319,48 +319,76 @@ export default [
   //   }],
   // },
   {
+    _tag: 'CSidebarNavItem',
+    name: 'Thông tin kho hàng',
+    to: '/depots',
+    icon: <CIcon name="cil-factory" customClasses="c-sidebar-nav-icon" />,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thông tin đội xe',
+    to: '/vehicles',
+    icon: <CIcon name="cil-truck" customClasses="c-sidebar-nav-icon" />,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thông tin khách hàng',
+    to: '/customers',
+    icon: <CIcon name="cil-address-book" customClasses="c-sidebar-nav-icon" />,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thông tin sản phẩm',
+    to: '/products',
+    icon: <CIcon name="cil-basket" customClasses="c-sidebar-nav-icon" />,
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Thông tin nhóm hàng',
+    to: '/goods-group',
+    icon: <CIcon name="cil-basket" customClasses="c-sidebar-nav-icon" />,
+  },
+  {
     _tag: 'CSidebarNavDropdown',
     name: 'Tùy chỉnh thông tin',
     icon: 'cil-info',
     _children: [
       {
         _tag: 'CSidebarNavItem',
-        name: '1. Thông tin đơn hàng',
+        name: 'Thông tin đơn hàng',
         to: '/orders',
         icon: 'cil-notes',
       },
-      {
-        _tag: 'CSidebarNavItem',
-        name: '2. Thông tin đội xe',
-        to: '/vehicles',
-        icon: 'cil-truck',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: '3. Thông tin khách hàng',
-        to: '/customers',
-        icon: 'cil-address-book',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: '4. Thông tin kho hàng',
-        to: '/depots',
-        icon: 'cil-factory',
-      },
-      
-      
-      {
-        _tag: 'CSidebarNavItem',
-        name: '5. Thông tin sản phẩm',
-        to: '/products',
-        icon: 'cil-basket',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: '6. Thông tin nhóm hàng',
-        to: '/goods-group',
-        icon: 'cil-basket',
-      },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: '2. Thông tin đội xe',
+      //   to: '/vehicles',
+      //   icon: 'cil-truck',
+      // },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: '3. Thông tin khách hàng',
+      //   to: '/customers',
+      //   icon: 'cil-address-book',
+      // },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: '4. Thông tin kho hàng',
+      //   to: '/depots',
+      //   icon: 'cil-factory',
+      // },    
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: '5. Thông tin sản phẩm',
+      //   to: '/products',
+      //   icon: 'cil-basket',
+      // },
+      // {
+      //   _tag: 'CSidebarNavItem',
+      //   name: '6. Thông tin nhóm hàng',
+      //   to: '/goods-group',
+      //   icon: 'cil-basket',
+      // },
     ],
   },
   {
