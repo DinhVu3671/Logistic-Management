@@ -21,4 +21,9 @@ public class RoleServiceImp extends BaseServiceImp<RoleRepository, Role, Long> i
     public Role findUserRole() {
         return getRepository().findUserRole();
     }
+
+    @Override
+    public Role findCustomerRole() {
+        return getRepository().findCustomerRole();
+    }
 }

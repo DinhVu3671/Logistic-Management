@@ -2,9 +2,19 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="sapo-repos-snapshots" />
+      <option name="name" value="Sapo Repositories" />
+      <option name="url" value="https://nexus.sapocorp.net/repository/maven-snapshots/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="sapo-repos" />
+      <option name="name" value="Sapo Repositories" />
+      <option name="url" value="https://nexus.sapocorp.net/repository/maven-releases" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
@@ -15,6 +25,11 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="public" />
+      <option name="name" value="Public Repositories" />
+      <option name="url" value="https://repo1.maven.org/maven2/" />
     </remote-repository>
   </component>
 </project>
