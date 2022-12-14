@@ -14,9 +14,10 @@ import DeliveryPlans from '../components/solution/delivery-plan/DeliveryPlans'
 import TrackingRoute from '../components/solution/tracking-route/TrackingRoute';
 import Login from '../views/dashboard/login/Login';
 import GoodsGroups from '../components/goodsGroup/GoodsGroups'
+import Dashboard from '../views/dashboard/Dashboard';
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', component: Dashboard },
   { path: '/customers', exact: true, name: 'Customers', component: Customers },
   { path: '/depots', exact: true, name: 'Depots', component: Depots },
   { path: '/vehicles', exact: true, name: 'Vehicles', component: Vehicles },
@@ -30,7 +31,7 @@ const routes = [
   { path: '/depots/detail', exact: true, name: 'Depot Detail', component: DetailDepot },
   { path: '/routes/solutions', exact: true, name: 'DeliveryPlans', component: DeliveryPlans },
   { path: '/routes/solutions/tracking', exact: true, name: 'TrackingRoute', component: TrackingRoute },
-  { path: '/login', exact: true, name: 'Login', component: Login },
+  { path: '/login', exact: true, name: 'Login', component: Login }, //Login
   { path: '/goods-group', exact: true, name: 'Good Groups', component: GoodsGroups },
 ];
 
