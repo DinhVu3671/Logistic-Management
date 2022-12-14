@@ -1,6 +1,7 @@
 package com.vrp.demo.entity.common;
 
 import com.vrp.demo.entity.BaseEntity;
+import com.vrp.demo.models.CustomerModelSignUp;
 import com.vrp.demo.models.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +43,14 @@ public class User extends BaseEntity {
         if (ignoreField)
             userModel = UserModel.ignoreField(userModel);
         return userModel;
+    }
+    public static CustomerModelSignUp convertToCustomerSignUp(User user, boolean ignoreField) {
+        ModelMapper modelMapper = new ModelMapper();
+        CustomerModelSignUp customerModelSignUp = modelMapper.map(user, CustomerModelSignUp.class);
+        customerModelSignUp.setPassword(null);
+        if (ignoreField)
+            customerModelSignUp = CustomerModelSignUp.ignoreField(customerModelSignUp);
+        return customerModelSignUp;
     }
 
 }

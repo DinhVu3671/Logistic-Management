@@ -61,4 +61,9 @@ public class CustomerModelSignUp extends BaseModel {
         Customer customer = modelMapper.map(customerModelSignUp, Customer.class);
         return customer;
     }
+    public static CustomerModelSignUp ignoreField(CustomerModelSignUp customerModelSignUp) {
+        customerModelSignUp.setDeleted(null);
+        customerModelSignUp.getRole().setDeleted(null);
+        return customerModelSignUp;
+    }
 }

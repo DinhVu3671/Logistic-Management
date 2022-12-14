@@ -9,6 +9,8 @@ import com.vrp.demo.entity.tenant.Order;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.CustomerModel;
 import com.vrp.demo.models.CustomerModelSignUp;
+import com.vrp.demo.models.UserModel;
+import com.vrp.demo.models.UserSessionModel;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.enu.NodeType;
 import com.vrp.demo.models.search.CorrelationSearch;
@@ -16,16 +18,17 @@ import com.vrp.demo.models.search.CustomerSearch;
 import com.vrp.demo.repository.CustomerRepository;
 import com.vrp.demo.repository.DepotRepository;
 import com.vrp.demo.repository.OrderRepository;
-import com.vrp.demo.service.CorrelationService;
-import com.vrp.demo.service.CustomerService;
-import com.vrp.demo.service.RoleService;
-import com.vrp.demo.service.UserService;
+import com.vrp.demo.repository.UserRepository;
+import com.vrp.demo.service.*;
 import com.vrp.demo.utils.CommonUtils;
 import com.vrp.demo.utils.QueryTemplate;
+import lombok.var;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.scheduling.annotation.Async;
@@ -40,8 +43,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service("customerService")
 public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Customer, Long> implements CustomerService {
+
+    private static Logger logger = LoggerFactory.getLogger(UserServiceImp.class);
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -59,6 +65,10 @@ public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Custo
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserSessionService userSessionService;
 
     private QueryTemplate buildQuery(CustomerSearch search) {
         QueryTemplate queryTemplate = getBaseQuery(search);
@@ -143,7 +153,7 @@ public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Custo
     @Override
     public CustomerModel findOne(Long id) {
         Customer customer = find(id);
-        customer.setCorrelations(getCorrelations(customer));
+//        customer.setCorrelations(getCorrelations(customer));
         CustomerModel customerModel = Customer.convertToModel(customer);
         return customerModel;
     }
@@ -218,7 +228,8 @@ public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Custo
         User user = CustomerModelSignUp.convertToUserEntity(customerModelSignUp);
         user.setRole(role);
         user.setActive(true);
-        String randomPassword = CommonUtils.generateCommonLangPassword();
+        String randomPassword = "123456";
+//                CommonUtils.generateCommonLangPassword();
         user.setPassword(passwordEncoder.encode(randomPassword));
         user = userService.created(user);
         Customer customer = CustomerModelSignUp.convertToCustomerEntity(customerModelSignUp);
@@ -228,6 +239,26 @@ public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Custo
         customer = update(customer);
 //        correlationService.createCorrelationsData(Customer.convertToModel(customer));
         return customerModelSignUp;
+    }
+    @Override
+    @Transactional
+    public UserSessionModel signin(CustomerModelSignUp customerModelSignUp) {
+            User user = null;
+            UserModel userModel = null;
+        try {
+            user = userRepository.findByEmail(customerModelSignUp.getEmail());
+            if (user == null)
+                return null;
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return null;
+        }
+        if (passwordEncoder.matches(customerModelSignUp.getPassword(), user.getPassword()))
+            userModel = User.convertToModel(user, true);
+        else
+            return null;
+        UserSessionModel userSessionModel = userSessionService.createUserSession(userModel);
+        return userSessionModel;
     }
 
     private List<Customer> readCustomers() throws Exception {
