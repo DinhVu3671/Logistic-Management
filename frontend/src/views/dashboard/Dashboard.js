@@ -13,16 +13,11 @@ import {
   CCallout
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-
-import MainChartExample from '../charts/MainChartExample.js'
-
-const WidgetsDropdown = lazy(() => import('../widgets/WidgetsDropdown.js'))
-const WidgetsBrand = lazy(() => import('../widgets/WidgetsBrand.js'))
+import MainChartExample from '../charts/MainChartExample';
 
 const Dashboard = () => {
   return (
     <>
-      <WidgetsDropdown />
       <CCard>
         <CCardBody>
           <CRow>
@@ -50,7 +45,7 @@ const Dashboard = () => {
               </CButtonGroup>
             </CCol>
           </CRow>
-          <MainChartExample style={{height: '300px', marginTop: '40px'}}/>
+          <MainChartExample />
         </CCardBody>
         <CCardFooter>
           <CRow className="text-center">
@@ -106,8 +101,6 @@ const Dashboard = () => {
           </CRow>
         </CCardFooter>
       </CCard>
-
-      <WidgetsBrand withCharts/>
 
       <CRow>
         <CCol>
