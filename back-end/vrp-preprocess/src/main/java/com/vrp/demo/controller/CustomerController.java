@@ -2,6 +2,8 @@ package com.vrp.demo.controller;
 
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.CustomerModel;
+import com.vrp.demo.models.CustomerModelSignUp;
+import com.vrp.demo.models.UserSessionModel;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.response.ResponseData;
 import com.vrp.demo.models.search.CustomerSearch;
@@ -24,6 +26,17 @@ public class CustomerController {
     @Autowired
     private ResponsePreProcessor responsePreProcessor;
 
+    @PostMapping(value = {"/sign-up-by-gmail"})
+    public ResponseEntity<ResponseData> signupByGmail(@RequestBody CustomerModelSignUp customerModelSignUp) throws CustomException {
+        customerModelSignUp = customerService.signupByGmail(customerModelSignUp);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customerModelSignUp);
+    }
+
+    @PostMapping(value = {"/sign-in"})
+    public ResponseEntity<ResponseData> signIn(@RequestBody CustomerModelSignUp customerModelSignUp) {
+        UserSessionModel userSessionModel = customerService.signin(customerModelSignUp);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, userSessionModel == null ? Code.LOGIN_FAIL : Code.LOGIN_SUCCESS, userSessionModel );
+    }
     @PostMapping(value = {"/search"})
     public ResponseEntity<ResponseData> search(@RequestBody CustomerSearch search) {
         if (!search.isPaged()) {

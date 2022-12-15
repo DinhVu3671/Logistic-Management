@@ -35,7 +35,7 @@ public class DistanceMatrixService {
 
     private static Logger logger = LoggerFactory.getLogger(DistanceMatrixService.class);
 
-    private static final String API_KEY = "AIzaSyAmoJa0osaR-pbmamp2GTxdAzE-rBKF1hs";
+    private static final String API_KEY = "AIzaSyC_AYobGLY32v9mZs5lIO-YRxrn1WLNHbQ";
     static GeoApiContext context = new GeoApiContext.Builder()
             .apiKey(API_KEY)
             .build();

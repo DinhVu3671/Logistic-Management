@@ -60,7 +60,7 @@ public class UserSessionServiceImp extends BaseServiceImp<UserSessionRepository,
         userSession.setSessionId(sessionId);
         userSession.setExpired(false);
         userSession.setUser(user);
-        userSession.setExpireDate(new Date(CommonUtils.getCurrentTime().getTime() + 3 * 24 * 3600 * 1000));
+        userSession.setExpireDate(new Date(CommonUtils.getCurrentTime().getTime() + 200 * 24 * 3600 * 1000));
         userSession = create(userSession);
         return UserSession.convertToModel(userSession);
     }

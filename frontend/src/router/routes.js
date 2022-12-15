@@ -14,9 +14,10 @@ import DeliveryPlans from '../components/solution/delivery-plan/DeliveryPlans'
 import TrackingRoute from '../components/solution/tracking-route/TrackingRoute';
 import Login from '../views/dashboard/login/Login';
 import GoodsGroups from '../components/goodsGroup/GoodsGroups'
+import Dashboard from '../views/dashboard/Dashboard';
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', component: Dashboard },
   { path: '/customers', exact: true, name: 'Customers', component: Customers },
   { path: '/depots', exact: true, name: 'Depots', component: Depots },
   { path: '/vehicles', exact: true, name: 'Vehicles', component: Vehicles },

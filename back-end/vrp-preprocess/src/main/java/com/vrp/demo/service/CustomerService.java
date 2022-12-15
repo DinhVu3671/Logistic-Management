@@ -3,6 +3,8 @@ package com.vrp.demo.service;
 import com.vrp.demo.entity.tenant.Customer;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.CustomerModel;
+import com.vrp.demo.models.CustomerModelSignUp;
+import com.vrp.demo.models.UserSessionModel;
 import com.vrp.demo.models.search.CustomerSearch;
 import org.springframework.data.domain.Page;
 
@@ -27,5 +29,6 @@ public interface CustomerService extends BaseService<Customer, Long>{
     public void createCustomerData();
 
     public List<CustomerModel> findAllWithCorrelations();
-
+    public CustomerModelSignUp signupByGmail(CustomerModelSignUp customerModelSignUp);
+    public UserSessionModel signin(CustomerModelSignUp customerModelSignUp);
 }

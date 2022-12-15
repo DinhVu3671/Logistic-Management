@@ -44,7 +44,8 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
         else {
-            TenantContext.setCurrentTenant(tenantID);
+            TenantContext.setCurrentTenant(TenantContext.DEFAULT_TENANT);
+//                    tenantID
             response.setHeader("X-TenantID", tenantID);
         }
         return true;
@@ -59,7 +60,7 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
 
     private static boolean isCommonURI(String requestURI) {
         List<String> commonURIs = Arrays.asList("/sign-in", "/sign-up", "/get-current-user",
-                "/sign-up-by-gmail", "/login",
+                "/sign-up-by-gmail", "/login", "/customers/sign-up-by-gmail", "/customers/sign-in",
                 "/sign-out","/routes/hello");
         for (String URI : commonURIs) {
             if (requestURI.compareTo(URI) == 0)

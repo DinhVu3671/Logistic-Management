@@ -6,13 +6,14 @@ import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.search.OrderSearch;
 import org.springframework.data.domain.Page;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface OrderService extends BaseService<Order, Long> {
 
-    public List<OrderModel> find(OrderSearch search);
+    public List<OrderModel> find(OrderSearch search) throws ParseException;
 
-    public Page<OrderModel> search(OrderSearch search);
+    public Page<OrderModel> search(OrderSearch search) throws ParseException;
 
     public OrderModel create(OrderModel orderModel) throws CustomException;
 
@@ -22,6 +23,7 @@ public interface OrderService extends BaseService<Order, Long> {
 
     public OrderModel findOne(Long id);
 
-    public void createOrderData() throws CustomException;
+    public void createOrderData() throws CustomException, ParseException;
+    public List<OrderModel> searchByYear(String year) throws ParseException;
 
 }
