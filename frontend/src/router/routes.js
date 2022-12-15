@@ -31,7 +31,7 @@ const routes = [
   { path: '/depots/detail', exact: true, name: 'Depot Detail', component: DetailDepot },
   { path: '/routes/solutions', exact: true, name: 'DeliveryPlans', component: DeliveryPlans },
   { path: '/routes/solutions/tracking', exact: true, name: 'TrackingRoute', component: TrackingRoute },
-  { path: '/login', exact: true, name: 'Login', component: Login }, //Login
+  { path: '/login', exact: true, name: 'Login', component: Login },
   { path: '/goods-group', exact: true, name: 'Good Groups', component: GoodsGroups },
 ];
 
