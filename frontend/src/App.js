@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { TheLayout } from "./layout";
 import "./scss/style.scss";
+import Dashboard from "./views/dashboard/Dashboard";
 import Login from "./views/dashboard/login/Login";
 
 const loading = (
@@ -27,6 +28,7 @@ class App extends Component {
   render() {
     if (!localStorage.getItem("sessionId"))
       return <Login setUserSession={this.setUserSession}></Login>;
+      // return <Dashboard />;
     else
       return (
         <HashRouter>

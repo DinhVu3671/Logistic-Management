@@ -160,6 +160,11 @@ public class UserServiceImp extends BaseServiceImp<UserRepository, User, Long> i
         initDBForUser(userModel.getUserName());
         return userModel;
     }
+    @Override
+    @Transactional
+    public User created(User user) {
+        return user = create(user);
+    }
 
     @Override
     @Transactional

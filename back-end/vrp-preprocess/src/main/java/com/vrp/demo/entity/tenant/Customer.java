@@ -1,6 +1,8 @@
 package com.vrp.demo.entity.tenant;
 
+import com.vrp.demo.entity.BaseEntity;
 import com.vrp.demo.models.CustomerModel;
+import com.vrp.demo.models.NodeModel;
 import com.vrp.demo.models.enu.NodeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +30,8 @@ public class Customer extends Node {
     private Depot clusterDepot;
     @Column(name = "penalty_cost")
     private double penaltyCost;
+    @Column(name = "user_id")
+    private Long userId;
 
     public static CustomerModel convertToModel(Customer customer) {
         ModelMapper modelMapper = new ModelMapper();

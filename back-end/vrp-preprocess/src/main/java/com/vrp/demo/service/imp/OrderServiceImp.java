@@ -8,6 +8,7 @@ import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.CustomerModel;
 import com.vrp.demo.models.OrderItemModel;
 import com.vrp.demo.models.OrderModel;
+import com.vrp.demo.models.dashboard.SalesModels;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.enu.DeliveryMode;
 import com.vrp.demo.models.search.CustomerSearch;
@@ -26,10 +27,10 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service("orderService")
 public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long> implements OrderService {
@@ -174,6 +175,11 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
             create(orderModel);
             }
         }
+    }
+
+    @Override
+    public List<SalesModels> searchByYear(String year) throws ParseException {
+        return orderRepository.searchByYear(year);
     }
 
     @Override
