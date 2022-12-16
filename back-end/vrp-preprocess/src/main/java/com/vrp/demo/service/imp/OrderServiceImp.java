@@ -8,6 +8,7 @@ import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.CustomerModel;
 import com.vrp.demo.models.OrderItemModel;
 import com.vrp.demo.models.OrderModel;
+import com.vrp.demo.models.dashboard.SalesModels;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.enu.DeliveryMode;
 import com.vrp.demo.models.search.CustomerSearch;
@@ -45,7 +46,7 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
     @Autowired
     private CustomerService customerService;
 
-    private QueryTemplate buildQuery(OrderSearch search) throws ParseException {
+    private QueryTemplate buildQuery(OrderSearch search) {
         QueryTemplate queryTemplate = getBaseQuery(search);
         String query = queryTemplate.getQuery();
         HashMap<String, Object> params = queryTemplate.getParameterMap();
@@ -53,22 +54,13 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
             query += " and e.code like :code ";
             params.put("code", "%" + search.getCode() + "%");
         }
-        if (search.getYear() != null) {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-            //Parsing the given String to Date object
-            Date date = formatter.parse(search.getYear());
-            Timestamp ts = new Timestamp(date.getTime());
-            query += " and e.created_at BETWEEN :startTime AND :endTime";
-            params.put("startTime", ts.getTime());
-            params.put("endTime", ts.getTime() + 24*3600*1000*365);
-        }
         queryTemplate.setQuery(query);
         queryTemplate.setParameterMap(params);
         return queryTemplate;
     }
 
     @Override
-    public List<OrderModel> find(OrderSearch search) throws ParseException {
+    public List<OrderModel> find(OrderSearch search) {
         List<OrderModel> orderModels = new ArrayList<>();
         QueryTemplate queryTemplate = buildQuery(search);
         List<Order> orders = find(queryTemplate);
@@ -79,7 +71,7 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
     }
 
     @Override
-    public Page<OrderModel> search(OrderSearch search) throws ParseException {
+    public Page<OrderModel> search(OrderSearch search) {
         CommonUtils.setDefaultPageIfNull(search);
         QueryTemplate queryTemplate = buildQuery(search);
         Page<Order> orders = search(queryTemplate);
@@ -170,7 +162,7 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
     @Override
     @Transactional(readOnly = false)
     @Async
-    public void createOrderData() throws CustomException, ParseException {
+    public void createOrderData() throws CustomException {
         CustomerSearch customerSearch = new CustomerSearch();
 //        customerSearch.setIds(Arrays.asList(368l, 369l, 370l, 371l, 372l, 373l, 374l, 375l, 376l));
         List<CustomerModel> customers = customerService.find(customerSearch);
@@ -186,10 +178,8 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
     }
 
     @Override
-    public List<OrderModel> searchByYear(String year) throws ParseException {
-        OrderSearch orderSearch = new OrderSearch();
-        orderSearch.setYear(year);
-        return find(orderSearch);
+    public List<SalesModels> searchByYear(String year) throws ParseException {
+        return orderRepository.searchByYear(year);
     }
 
     @Override
