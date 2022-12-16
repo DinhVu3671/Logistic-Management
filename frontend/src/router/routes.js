@@ -17,7 +17,8 @@ import GoodsGroups from '../components/goodsGroup/GoodsGroups'
 import Dashboard from '../views/dashboard/Dashboard';
 
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: Dashboard },
+  { path: '/', exact: true, name: 'Home' },//, component: Dashboard
+  { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
   { path: '/customers', exact: true, name: 'Customers', component: Customers },
   { path: '/depots', exact: true, name: 'Depots', component: Depots },
   { path: '/vehicles', exact: true, name: 'Vehicles', component: Vehicles },
