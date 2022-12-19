@@ -144,10 +144,10 @@ class DetailVehicle extends Component {
                                         items={this.state.vehicleProducts}
                                         fields={[
                                             { key: 'index', label: 'STT' },
-                                            { key: 'productCode', label: 'Mã sản phẩm' },
-                                            { key: 'productName', label: 'Tên sản phẩm' },
-                                            { key: 'size', label: 'Kích thước thùng(dài*rộng*cao)' },
-                                            { key: 'maxNumber', label: 'Số lượng tối đa(thùng)' },
+                                            { key: 'productCode', label: 'Product Code' },
+                                            { key: 'productName', label: 'Product name' },
+                                            { key: 'size', label: 'Size (long*wide*high)' },
+                                            { key: 'maxNumber', label: 'Max number(box)' },
                                             // { key: 'actions', label: 'Action' },
 
                                         ]}

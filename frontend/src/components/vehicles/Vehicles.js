@@ -274,24 +274,24 @@ class Vehicles extends Component {
                 <CRow>
                     <CCol >
                         <CCard>
-                            <CCardHeader>
+                            {/* <CCardHeader>
                                 Vehicles Info
                                 <small className="text-muted"> {totalPages} pages</small>
                                 <small className="text-muted"> {totalVehicles} Vehicles</small>
-                            </CCardHeader>
+                            </CCardHeader> */}
                             <CCardBody>
                                 <CDataTable
                                     items={vehiclesData}
                                     fields={[
                                         { key: 'index', label: 'STT' },
-                                        { key: 'name', _classes: 'font-weight-bold', label: 'Tên Xe' },
-                                        { key: 'capacity', label: 'Sức chứa(kg/m3)' },
-                                        { key: 'averageFeeTransport', label: 'Phí di chuyển (VND/km)' },
-                                        { key: 'averageVelocity', label: 'Vận tốc trung bình(km/h)' },
-                                        { key: 'driverName', label: 'Tên lái xe' },
-                                        { key: 'type', label: 'Loại xe' },
-                                        { key: 'ready', label: 'Sẵn sàng' },
-                                        { key: 'actions', label: 'Thao tác', }
+                                        { key: 'name', _classes: 'font-weight-bold', label: 'Vehicles Name' },
+                                        { key: 'capacity', label: 'Capacity (kg/m3)' },
+                                        { key: 'averageFeeTransport', label: 'Fee of transport (VND/km)' },
+                                        { key: 'averageVelocity', label: 'Average speed(km/h)' },
+                                        { key: 'driverName', label: 'Driver Name' },
+                                        { key: 'type', label: 'Type' },
+                                        { key: 'ready', label: 'Ready' },
+                                        { key: 'actions', label: 'Action', }
 
                                     ]}
                                     hover
@@ -390,13 +390,20 @@ class Vehicles extends Component {
                                     }
 
                                 />
-                                <CPagination
-                                    activePage={currentPage}
-                                    onActivePageChange={(page) => this.onPageChanged(page)}
-                                    pages={totalPages}
-                                    doubleArrows={true}
-                                    align="center"
-                                />
+                                <CCardBody style={{ display: "flex", justifyContent: "space-between", padding: "0 0" }}>
+                                    <CCardHeader style={{ borderBottom: "none" }}>
+                                        Vehicles Info
+                                        <small className="text-muted"> {totalPages} pages</small>
+                                        <small className="text-muted"> {totalVehicles} Vehicles</small>
+                                    </CCardHeader>
+                                    <CPagination
+                                        activePage={currentPage}
+                                        onActivePageChange={(page) => this.onPageChanged(page)}
+                                        pages={totalPages}
+                                        doubleArrows={true}
+                                        align="center"
+                                    />
+                                </CCardBody>
                             </CCardBody>
                         </CCard>
                     </CCol>

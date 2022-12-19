@@ -38,7 +38,7 @@ import SalesCharst from '../charts/SalesCharst';
 const Dashboard = () => {
   return (
     <>
-      <CContainer>
+      <CContainer style={{backgroundColor: "white"}}>
         <CRow>
           <MainChartExample />
         </CRow>
