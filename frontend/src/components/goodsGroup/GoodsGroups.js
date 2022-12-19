@@ -274,11 +274,11 @@ class GoodsGroups extends Component {
                                     items={goodsGroupsData}
                                     fields={[
                                         { key: 'index', label: 'STT' },
-                                        { key: 'name', _classes: 'font-weight-bold', label: 'Tên nhóm' },
-                                        { key: 'detail', label: 'Chi tiết' },
+                                        { key: 'name', _classes: 'font-weight-bold', label: 'Group Name' },
+                                        { key: 'detail', label: 'Detail' },
                                         {
                                             key: 'actions',
-                                            label: 'Thao tác',
+                                            label: 'Actions',
                                         }
 
                                     ]}

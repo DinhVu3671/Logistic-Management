@@ -63,11 +63,11 @@ class DetailCustomer extends Component {
                                         items={this.state.correlations}
                                         fields={[
                                             { key: 'index', label: 'STT' },
-                                            { key: 'toNodeCode', label: 'Mã điểm' },
-                                            { key: 'toNodeName', label: 'Tên điểm' },
-                                            { key: 'toNodeType', label: 'Loại điểm' },
-                                            { key: 'distance', label: 'Khoảng cách(km)' },
-                                            { key: 'time', label: 'Thời gian trung bình(phút)' },
+                                            { key: 'toNodeCode', label: 'Code' },
+                                            { key: 'toNodeName', label: 'Name' },
+                                            { key: 'toNodeType', label: 'Type' },
+                                            { key: 'distance', label: 'Distance(km)' },
+                                            { key: 'time', label: 'The average time(phút)' },
                                         ]}
                                         hover
                                         striped

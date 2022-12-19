@@ -263,7 +263,7 @@ class Customers extends Component {
                     </CCol>
                     <CCol sm='2'>
                         <CCard>
-                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" />{t("customers.add")}</CButton>
+                            <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
                         </CCard>
                         {/* <CCard>
                             <CButton type="submit" size="md" color="success" onClick={() => this.createCustomerData()}><CIcon name="cil-scrubber" /> Create Customer Data</CButton>
@@ -273,26 +273,22 @@ class Customers extends Component {
                 <CRow>
                     <CCol >
                         <CCard>
-                            <CCardHeader>
-                                {t("customers.title")}
-                                <small className="text-muted"> {totalPages} {t("customers.pages")}</small>
-                                <small className="text-muted"> {totalCustomers} {t("customers.customer")}</small>
-                            </CCardHeader>
+
                             <CCardBody>
                                 <CDataTable
                                     items={customersData}
                                     fields={[
                                         { key: 'index', label: t("customers.ordinalNum") },
-                                        { key: 'name', _classes: 'font-weight-bold', label: t("customers.name") },
-                                        { key: 'code', label: t("customers.code") },
+                                        { key: 'name', _classes: 'font-weight-bold', label: "Customer Name" },
+                                        { key: 'code', label: "Code" },
                                         // { key: 'longitude', label: t("customers.longitude") },
                                         // { key: 'latitude', label: t("customers.latitude") },
-                                        { key: 'address', label: t("customers.address") },
-                                        { key: 'startTimeStr', label: t("customers.startTimeStr") },
-                                        { key: 'endTimeStr', label: t("customers.endTimeStr") },
+                                        { key: 'address', label: "Address" },
+                                        { key: 'startTimeStr', label: "Opening time" },
+                                        { key: 'endTimeStr', label: "Closing time" },
                                         {
                                             key: 'actions',
-                                            label: t("customers.action"),
+                                            label: "Actions",
                                         }
 
                                     ]}
@@ -312,15 +308,15 @@ class Customers extends Component {
                                                         <CButtonGroup>
                                                             <CButton variant="ghost" color="info" shape="pill" size="sm"
                                                                 onClick={() => { this.handleDetail(item) }}
-                                                            >{t("customers.detail")}
+                                                            >Detail
                                                             </CButton>
                                                             <CButton variant="ghost" color="warning" shape="pill" size="sm"
                                                                 onClick={() => { this.handleEdit(item) }}
-                                                            >{t("customers.edit")}
+                                                            >Edit
                                                             </CButton>
                                                             <CButton variant="ghost" color="danger" shape="pill" size="sm"
                                                                 onClick={() => { this.showDeleteModal(item) }}
-                                                            >{t("customers.delete")}
+                                                            >Delete
                                                             </CButton>
 
                                                         </CButtonGroup>
@@ -346,13 +342,21 @@ class Customers extends Component {
                                     }}
 
                                 />
-                                <CPagination
-                                    activePage={currentPage}
-                                    onActivePageChange={(page) => this.onPageChanged(page)}
-                                    pages={totalPages}
-                                    doubleArrows={true}
-                                    align="center"
-                                />
+                                <CCardBody style={{ display: "flex", justifyContent: "space-between", padding: "0 0" }}>
+                                    <CCardHeader style={{ borderBottom: "none" }}>
+                                        Customers Info
+                                        <small className="text-muted"> {totalPages} pages</small>
+                                        <small className="text-muted"> {totalCustomers} Customers</small>
+                                    </CCardHeader>
+                                    <CPagination
+                                        activePage={currentPage}
+                                        onActivePageChange={(page) => this.onPageChanged(page)}
+                                        pages={totalPages}
+                                        doubleArrows={true}
+                                        align="center"
+                                    />
+                                </CCardBody>
+
                             </CCardBody>
                         </CCard>
                     </CCol>

@@ -97,7 +97,7 @@ class AddProduct extends Component {
                 <CModal
                     show={true}
                     onClose={() => this.props.setShowAdd(false)}
-                    color="success"
+                    color="info"
                 >
                     <CModalHeader closeButton>
                         <CModalTitle>Create Product</CModalTitle>

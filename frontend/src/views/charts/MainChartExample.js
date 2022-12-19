@@ -26,7 +26,7 @@ function MainChartExample() {
 
     return (
         <CRow>
-            <CCol xs="12" md="6" xl="6">
+            <CCol xs="12" md="5" xl="6">
                 <Plot
                     data={[
                         {
@@ -35,10 +35,10 @@ function MainChartExample() {
                             y: statData["quantity"].map(item => item[1])
                         }
                     ]}
-                    layout={{title: 'Top sản phẩm bán ra'}}
+                    layout={{title: 'Top sản phẩm bán ra', width: 530 }}
                 />
             </CCol >
-            <CCol xs="12" md="6" xl="6">
+            <CCol xs="12" md="5" xl="4">
                 <Plot
                     data={[
                         {
@@ -47,7 +47,7 @@ function MainChartExample() {
                             y: statData["revenue"].map(item => item[1])
                         }
                     ]}
-                    layout={{title: 'Top doanh thu theo sản phẩm'}}
+                    layout={{title: 'Top doanh thu theo sản phẩm', width: 530 }}
                 />
             </CCol>
             </CRow>
