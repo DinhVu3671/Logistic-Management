@@ -122,6 +122,8 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
 //        Depot depot = depotRepository.find(orderModel.getDepot().getId());
 //        if (depot == null)
 //            throw CommonUtils.createException(Code.DEPOT_ID_NOT_EXISTED);
+        order.setStatus(orderModel.getStatus());
+        orderModel = Order.convertToModel(order);
         order = order.updateOrder(orderModel);
         if (order.getDeliveryMode().equals(DeliveryMode.STANDARD)) {
             order.setDeliveryBeforeTime(customer.getEndTime());

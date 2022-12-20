@@ -35,6 +35,7 @@ public class OrderModel extends BaseModel {
     @JsonIgnore
     private double antiStackingArea;
     private List<GoodsGroupModel> goodsGroups;
+    private String status;
 
     public static Order convertToEntity(OrderModel orderModel) {
         ModelMapper modelMapper = new ModelMapper();
@@ -104,6 +105,7 @@ public class OrderModel extends BaseModel {
             orderItemModel.setId(null);
         }
         clone.setOrderItems(orderItemModels);
+        clone.setStatus(this.status);
         return clone;
     }
 
