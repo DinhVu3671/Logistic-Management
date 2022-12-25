@@ -30,4 +30,13 @@ public class RoleRepositoryImp extends BaseRepositoryImp<Role,Long> implements R
         Role role = findOne(queryTemplate);
         return role;
     }
+
+    @Override
+    public Role findDriverRole() {
+        String query = "From Role e where e.name = 'driver'";
+        QueryTemplate queryTemplate = new QueryTemplate();
+        queryTemplate.setQuery(query);
+        Role role = findOne(queryTemplate);
+        return role;
+    }
 }
