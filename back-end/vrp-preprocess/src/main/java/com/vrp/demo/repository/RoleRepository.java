@@ -7,5 +7,6 @@ public interface RoleRepository extends BaseRepository<Role, Long> {
 
     public Role findUserRole();
     public Role findCustomerRole();
+    public Role findDriverRole();
 
 }

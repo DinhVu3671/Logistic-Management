@@ -7,5 +7,6 @@ public interface RoleService extends BaseService<Role, Long> {
 
     public Role findUserRole();
     public Role findCustomerRole();
+    public Role findDriverRole();
 
 }

@@ -57,6 +57,8 @@ public class Vehicle extends BaseEntity {
             joinColumns = @JoinColumn(name = "vehicle_id"),
             inverseJoinColumns = @JoinColumn(name = "goods_group_id"))
     private List<GoodsGroup> excludedGoodsGroups;
+    @Column(name = "user_id")
+    private Long userId;
 
     public static VehicleModel convertToModel(Vehicle vehicle) {
         ModelMapper modelMapper = new ModelMapper();
