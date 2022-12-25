@@ -36,6 +36,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +52,8 @@ public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Custo
 
     private static Logger logger = LoggerFactory.getLogger(UserServiceImp.class);
 
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     private CustomerRepository customerRepository;
     @Autowired
@@ -259,6 +264,24 @@ public class CustomerServiceImp extends BaseServiceImp<CustomerRepository, Custo
             return null;
         UserSessionModel userSessionModel = userSessionService.createUserSession(userModel);
         return userSessionModel;
+    }
+
+    @Override
+    public Customer getCustomerByUserId(Long userId) {
+        QueryTemplate queryTemplate = new QueryTemplate();
+        HashMap<String, Object> params = queryTemplate.getParameterMap();
+
+        String querysentence = "Select * from customers where ";
+        querysentence += " user_id = :id ";
+        params.put("id", userId);
+//        queryTemplate.setPageable(search.getPageable());
+        queryTemplate.setQuery(querysentence);
+        queryTemplate.setParameterMap(params);
+
+        Query createQuery = entityManager.createNativeQuery(queryTemplate.getQuery(), Customer.class).setParameter("id", userId);
+
+        Customer customer = (Customer) createQuery.getSingleResult();
+        return customer;
     }
 
     private List<Customer> readCustomers() throws Exception {

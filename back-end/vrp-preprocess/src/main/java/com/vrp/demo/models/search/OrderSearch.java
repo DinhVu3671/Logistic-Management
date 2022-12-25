@@ -9,4 +9,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OrderSearch extends BaseSearch{
     private String code;
+    private Long userId;
 }

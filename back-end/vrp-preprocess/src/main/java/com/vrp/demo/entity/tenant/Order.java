@@ -50,6 +50,7 @@ public class Order extends BaseEntity {
     //    private double antiStackingArea;
     @Column(name = "intend_receive_time")
     protected Timestamp intendReceiveTime;
+    private String status;
 
     public static OrderModel convertToModel(Order order) {
         ModelMapper modelMapper = new ModelMapper();
@@ -82,6 +83,7 @@ public class Order extends BaseEntity {
         this.setDeliveryBeforeTime(orderModel.getDeliveryBeforeTime());
         this.setTimeService(orderModel.getTimeService());
         this.setTimeLoading(orderModel.getTimeLoading());
+        this.setStatus(orderModel.getStatus());
         return this;
     }
 
