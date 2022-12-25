@@ -11,6 +11,8 @@ import com.vrp.demo.models.UserSessionModel;
 import com.vrp.demo.models.driver.DriverResponsive;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.response.ResponseData;
+import com.vrp.demo.models.user.DriverEditation;
+import com.vrp.demo.models.user.UserPassword;
 import com.vrp.demo.service.DriverService;
 import com.vrp.demo.utils.ResponsePreProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +47,17 @@ public class DriverController {
         DriverResponsive driverResponsive = driverService.getInfo(driverModel.getId());
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, driverResponsive);
 
+    }
+
+    @PostMapping({"/change-password"})
+    public ResponseEntity<ResponseData> changePassword(@RequestBody UserPassword userPassword) {
+        UserSessionModel userSessionModel = this.driverService.changePassword(userPassword);
+        return this.responsePreProcessor.buildResponseEntity(HttpStatus.OK, userSessionModel == null ? Code.FAIL : Code.SUCCESS, userSessionModel);
+    }
+
+    @PostMapping({"/edit-info"})
+    public ResponseEntity<ResponseData> editDriverInfo(@RequestBody DriverEditation driverEditation) {
+        UserSessionModel userSessionModel = this.driverService.editInfo(driverEditation);
+        return this.responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userSessionModel);
     }
 }

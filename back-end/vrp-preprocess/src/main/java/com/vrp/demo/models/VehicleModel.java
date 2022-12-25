@@ -40,6 +40,7 @@ public class VehicleModel extends BaseModel {
     private VehicleType type;
     private List<VehicleProductModel> vehicleProducts;
     private List<GoodsGroupModel> excludedGoodsGroups;
+    private Long userId;
 
     public static com.vrp.demo.entity.tenant.Vehicle convertToEntity(VehicleModel vehicleModel) {
         ModelMapper modelMapper = new ModelMapper();

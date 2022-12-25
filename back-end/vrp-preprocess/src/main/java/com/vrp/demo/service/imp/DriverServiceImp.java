@@ -10,13 +10,15 @@ import com.vrp.demo.entity.common.User;
 import com.vrp.demo.entity.tenant.Customer;
 import com.vrp.demo.entity.tenant.Order;
 import com.vrp.demo.entity.tenant.Vehicle;
-import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.DriverModel;
 import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.UserModel;
 import com.vrp.demo.models.UserSessionModel;
 import com.vrp.demo.models.driver.DriverResponsive;
 import com.vrp.demo.models.search.VehicleSearch;
+import com.vrp.demo.models.user.DriverEditation;
+import com.vrp.demo.models.user.UserPassword;
+import com.vrp.demo.repository.JourneyDriverRepository;
 import com.vrp.demo.repository.OrderRepository;
 import com.vrp.demo.repository.UserRepository;
 import com.vrp.demo.repository.VehicleRepository;
@@ -33,7 +35,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,8 @@ public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle,
     private VehicleRepository vehicleRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private JourneyDriverRepository journeyDriverRepository;
     @Autowired
     private RoleService roleService;
     @Autowired
@@ -81,26 +84,6 @@ public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle,
         queryTemplate.setQuery(query);
         queryTemplate.setParameterMap(params);
         return queryTemplate;
-    }
-
-    public Page<DriverModel> search(VehicleSearch search) {
-        return null;
-    }
-
-    public DriverModel create(DriverModel driverModel) {
-        return null;
-    }
-
-    public DriverModel update(DriverModel driverModel) throws CustomException {
-        return null;
-    }
-
-    public int delete(Long id) throws CustomException {
-        return 0;
-    }
-
-    public DriverModel findOne(Long id) {
-        return null;
     }
 
     @Override
@@ -159,5 +142,61 @@ public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle,
         driverResponsive.setVehicle(vehicle);
 
         return driverResponsive;
+    }
+
+    @Override
+    @Transactional
+    public UserSessionModel changePassword(UserPassword userPassword) {
+        User user = null;
+        UserModel userModel = null;
+
+        try {
+            user = this.userRepository.findByEmail(userPassword.getUserEmail());
+            if (user == null) {
+                return null;
+            }
+        } catch (Exception var5) {
+            logger.info(var5.getMessage());
+            return null;
+        }
+
+        if (this.passwordEncoder.matches(userPassword.getOldPassword(), user.getPassword())) {
+            user.setPassword(this.passwordEncoder.encode(userPassword.getNewPassword()));
+            userModel = User.convertToModel(user, true);
+            UserSessionModel var4 = this.userSessionService.createUserSession(userModel);
+            return var4;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    @Transactional
+    public UserSessionModel editInfo(DriverEditation driverEditation) {
+        User user = null;
+        Vehicle vehicle = null;
+        UserModel userModel = null;
+
+        try {
+            user = this.userRepository.findByEmail(driverEditation.getDriverEmail());
+            System.out.println(user.getUserName());
+            vehicle = this.vehicleRepository.findByUserId(user.getId());
+            System.out.println(vehicle.getDriverName());
+            if (user == null) {
+                return null;
+            }
+        } catch (Exception var5) {
+            logger.info(var5.getMessage());
+            return null;
+        }
+
+        user.setPhoneNumber(driverEditation.getPhoneNumber());
+        vehicle.setMaxCapacity(driverEditation.getMaxCapacity());
+        vehicle.setMaxVelocity(driverEditation.getMaxVelocity());
+        vehicle.setMaxLoadWeight(driverEditation.getMaxLoadWeight());
+        userModel = User.convertToModel(user, true);
+        UserSessionModel var4 = this.userSessionService.createUserSession(userModel);
+
+        return var4;
     }
 }
