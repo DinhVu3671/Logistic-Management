@@ -38,5 +38,6 @@ public class DeliveryPlan {
     private Date updatedAt;
     @Field(name = "is_selected")
     private Boolean isSelected = false;
+    private Long vehicleId;
 
 }

@@ -2,6 +2,8 @@ package com.vrp.demo.repository.imp;
 
 import com.vrp.demo.entity.tenant.mongo.DeliveryPlan;
 import com.vrp.demo.models.search.DeliveryPlanSearch;
+import com.vrp.demo.models.solution.Journey;
+import com.vrp.demo.models.solution.Solution;
 import com.vrp.demo.repository.DeliveryPlanRepository;
 import com.vrp.demo.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -80,6 +83,24 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query, DeliveryPlan.class);
+    }
+
+    @Override
+    public Solution getSolutionByDriver(Long vehicleId) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("vehicle._id").is(vehicleId)));
+
+        DeliveryPlan results = mongoTemplate.findOne(query, DeliveryPlan.class);
+        Solution solution = results.getSolution();
+        List<Journey> journeys = solution.getJourneys();
+        List<Journey> journeyList = new ArrayList<>();
+        journeys.forEach((item) -> {
+            if(item.getVehicle().getId().equals(vehicleId)) {
+                journeyList.add(item);
+                solution.setJourneys(journeyList);
+            }
+        });
+        return solution;
     }
 
 

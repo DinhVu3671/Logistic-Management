@@ -2,11 +2,14 @@ package com.vrp.demo.service.imp;
 
 import com.vrp.demo.entity.tenant.mongo.DeliveryPlan;
 import com.vrp.demo.models.search.DeliveryPlanSearch;
+import com.vrp.demo.models.solution.Solution;
 import com.vrp.demo.repository.DeliveryPlanRepository;
 import com.vrp.demo.repository.JourneyDriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SolutionService {
@@ -23,6 +26,9 @@ public class SolutionService {
 
     public Page<DeliveryPlan> search(DeliveryPlanSearch search) {
         return deliveryPlanRepository.searchDeliveryPlan(search);
+    }
+    public Solution getSolutionByDriver(Long vehicleId) {
+        return deliveryPlanRepository.getSolutionByDriver(vehicleId);
     }
 
     public DeliveryPlan tracking(Long id) {

@@ -63,6 +63,11 @@ public class SolutionRouteController {
         Page<DeliveryPlan> solutions = solutionService.search(deliveryPlanSearch);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, solutions);
     }
+    @PostMapping("/getSolutionByDriver")
+    public ResponseEntity<ResponseData> getSolutionByDriver(@RequestBody DeliveryPlan deliveryPlan) {
+        Solution solutions = solutionService.getSolutionByDriver(deliveryPlan.getVehicleId());
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, solutions);
+    }
 
     @PostMapping("/tracking")
     public ResponseEntity<ResponseData> trackingRoute(@RequestBody DeliveryPlanSearch deliveryPlanSearch) {
