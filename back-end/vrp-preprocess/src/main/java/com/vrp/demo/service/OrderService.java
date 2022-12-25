@@ -26,5 +26,6 @@ public interface OrderService extends BaseService<Order, Long> {
 
     public void createOrderData() throws CustomException;
     public List<SalesModels> searchByYear(String year) throws ParseException;
+    public List<OrderModel> getOrdersByCustomer(Long userId);
 
 }

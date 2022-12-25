@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 public class MultiTenantMongoDbFactory extends SimpleMongoClientDatabaseFactory {
 //    private static final String url = "mongodb+srv://zovivo:123khongbiet123@cluster0.eloqz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     private static final String url = "mongodb://localhost:27017/";
-    private static final String DEFAULT_DB = "common";
+    private static final String DEFAULT_DB = "mailungdung2000";
 
     private static Logger logger = LoggerFactory.getLogger(MultiTenantMongoDbFactory.class);
 
