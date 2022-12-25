@@ -26,17 +26,17 @@ public class CustomerController {
     @Autowired
     private ResponsePreProcessor responsePreProcessor;
 
-    @PostMapping(value = {"/sign-up-by-gmail"})
-    public ResponseEntity<ResponseData> signupByGmail(@RequestBody CustomerModelSignUp customerModelSignUp) throws CustomException {
-        customerModelSignUp = customerService.signupByGmail(customerModelSignUp);
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customerModelSignUp);
-    }
+//    @PostMapping(value = {"/sign-up-by-gmail"})
+//    public ResponseEntity<ResponseData> signupByGmail(@RequestBody CustomerModelSignUp customerModelSignUp) throws CustomException {
+//        customerModelSignUp = customerService.signupByGmail(customerModelSignUp);
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customerModelSignUp);
+//    }
 
-    @PostMapping(value = {"/sign-in"})
-    public ResponseEntity<ResponseData> signIn(@RequestBody CustomerModelSignUp customerModelSignUp) {
-        UserSessionModel userSessionModel = customerService.signin(customerModelSignUp);
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, userSessionModel == null ? Code.LOGIN_FAIL : Code.LOGIN_SUCCESS, userSessionModel );
-    }
+//    @PostMapping(value = {"/sign-in"})
+//    public ResponseEntity<ResponseData> signIn(@RequestBody CustomerModelSignUp customerModelSignUp) {
+//        UserSessionModel userSessionModel = customerService.signin(customerModelSignUp);
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, userSessionModel == null ? Code.LOGIN_FAIL : Code.LOGIN_SUCCESS, userSessionModel );
+//    }
     @PostMapping(value = {"/search"})
     public ResponseEntity<ResponseData> search(@RequestBody CustomerSearch search) {
         if (!search.isPaged()) {
@@ -78,10 +78,10 @@ public class CustomerController {
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customerModels);
     }
 
-    @PostMapping(value = {"/create-customer-data"})
-    public ResponseEntity<ResponseData> createCustomerData() {
-        customerService.createCustomerData();
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, "OK!!");
-    }
+//    @PostMapping(value = {"/create-customer-data"})
+//    public ResponseEntity<ResponseData> createCustomerData() {
+//        customerService.createCustomerData();
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, "OK!!");
+//    }
 
 }

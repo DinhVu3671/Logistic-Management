@@ -168,6 +168,12 @@ public class UserServiceImp extends BaseServiceImp<UserRepository, User, Long> i
 
     @Override
     @Transactional
+    /*
+     * @param email
+     * @param password
+     * @return
+     * @throws CustomException
+     */
     public UserSessionModel signin(UserModel userModel) {
             User user = null;
         try {
@@ -225,5 +231,14 @@ public class UserServiceImp extends BaseServiceImp<UserRepository, User, Long> i
         return userSessionModel;
     }
 
-
+    @Override
+    @Transactional
+    public User getUserById(Long id) {
+        try {
+            return userRepository.findById(id);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return null;
+        }
+    }
 }

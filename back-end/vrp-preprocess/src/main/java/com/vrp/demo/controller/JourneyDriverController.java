@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/journey-driver")
+@RequestMapping(value = "/journey-driver")
 public class JourneyDriverController {
 
     @Autowired

@@ -29,10 +29,10 @@ public class SolutionRouteController {
     @Autowired
     private ResponsePreProcessor responsePreProcessor;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello!";
-    }
+//    @GetMapping("/hello")
+//    public String hello() {
+//        return "hello!";
+//    }
 
 //    @PostMapping("/read-data-problem")
 //    public ResponseData createProblemAssumptionFromData(HttpServletRequest request, @ModelAttribute DataProblemInput problemInput) throws IOException, InvalidFormatException {

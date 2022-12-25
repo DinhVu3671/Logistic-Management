@@ -119,7 +119,7 @@ class AddDepot extends Component {
                 <CModal
                     show={show}
                     onClose={() => this.props.setShowAdd(!this.props.show)}
-                    color="success"
+                    color="info"
                 >
                     <CModalHeader closeButton>
                         <CModalTitle>Create Depot</CModalTitle>

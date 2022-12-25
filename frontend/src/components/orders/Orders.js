@@ -263,14 +263,11 @@ class Orders extends Component {
                             </CInputGroup>
                         </CCard>
                     </CCol>
-                    <CCol sm='2'>
+                    {/* <CCol sm='2'>
                         <CCard>
                             <CButton type="submit" size="md" color="info" onClick={() => this.setShowAdd(true)}><CIcon name="cil-scrubber" /> Add</CButton>
                         </CCard>
-                        {/* <CCard>
-                            <CButton type="submit" size="md" color="success" onClick={() => this.createOrderData()}><CIcon name="cil-scrubber" /> Create Order Data</CButton>
-                        </CCard> */}
-                    </CCol>
+                    </CCol> */}
                 </CRow>
                 <CRow>
                     <CCol >
@@ -281,17 +278,17 @@ class Orders extends Component {
                                     // border="1px solid #f7f4f4"
                                     fields={[
                                         { key: 'index', label: 'STT' },
-                                        { key: 'code', label: 'Mã đơn hàng' },
+                                        { key: 'code', label: 'Order Code' },
                                         // { key: 'depotCode', label: 'Mã kho hàng' },
-                                        { key: 'customerCode', label: 'Mã khách hàng' },
-                                        { key: 'orderValue', label: 'Giá trị đơn hàng(VND)' },
-                                        { key: 'weight', label: 'Khối lượng(kg)' },
-                                        { key: 'capacity', label: 'Thể tích(m3)' },
-                                        { key: 'deliveryMode', label: 'Chế độ giao hàng' },
-                                        { key: 'productTypeNumber', label: 'Số loại sản phẩm' },
+                                        { key: 'customerCode', label: 'Customer code' },
+                                        { key: 'orderValue', label: 'Order value (VND)' },
+                                        { key: 'weight', label: 'Weight (kg)' },
+                                        { key: 'capacity', label: 'Volume (m3)' },
+                                        { key: 'deliveryMode', label: 'Delivery mode' },
+                                        { key: 'productTypeNumber', label: 'Number of product types' },
                                         {
                                             key: 'actions',
-                                            label: 'Thao tác',
+                                            label: 'Actions',
                                         }
 
                                     ]}

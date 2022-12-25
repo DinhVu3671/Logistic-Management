@@ -199,7 +199,7 @@ class Products extends Component {
         const details = this.state.details;
         return (
             <CContainer>
-                <CRow style={{display: "flex", justifyContent: "space-between"}}>
+                <CRow style={{ display: "flex", justifyContent: "space-between" }}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -269,25 +269,21 @@ class Products extends Component {
                 <CRow>
                     <CCol >
                         <CCard>
-                            <CCardHeader>
-                                Products Info
-                                    <small className="text-muted"> {totalPages} pages</small>
-                                <small className="text-muted"> {totalProducts} Products</small>
-                            </CCardHeader>
+
                             <CCardBody>
                                 <CDataTable
                                     items={productsData}
                                     fields={[
                                         { key: 'index', label: 'STT' },
-                                        { key: 'name', _classes: 'font-weight-bold', label: 'Tên sản phẩm' },
-                                        { key: 'code', label: 'Mã sản phẩm' },
-                                        { key: 'price', label: 'Đơn giá(VND)' },
-                                        { key: 'goodsGroup', label: 'Loại sản phẩm' },
-                                        { key: 'weight', label: 'Khối lượng(kg)' },
-                                        { key: 'capacity', label: 'Thể tích(m3)' },
+                                        { key: 'name', _classes: 'font-weight-bold', label: 'Product Name' },
+                                        { key: 'code', label: 'Code' },
+                                        { key: 'price', label: 'Price (VND)' },
+                                        { key: 'goodsGroup', label: 'Product Type' },
+                                        { key: 'weight', label: 'Weight(kg)' },
+                                        { key: 'capacity', label: 'Capacity(m3)' },
                                         {
                                             key: 'actions',
-                                            label: 'Thao tác',
+                                            label: 'Actions',
                                         }
 
                                     ]}
@@ -310,11 +306,11 @@ class Products extends Component {
                                                                 <CButton variant="ghost" color="warning" shape="pill" size="sm"
                                                                     onClick={() => { this.handleEdit(item) }}
                                                                 >Edit
-                                                            </CButton>
+                                                                </CButton>
                                                                 <CButton variant="ghost" color="danger" shape="pill" size="sm"
                                                                     onClick={() => { this.showDeleteModal(item) }}
                                                                 >Delete
-                                                            </CButton>
+                                                                </CButton>
 
                                                             </CButtonGroup>
                                                         </td>
@@ -334,10 +330,10 @@ class Products extends Component {
                                                         <CCollapse show={details.includes(index)}>
                                                             <CCardBody >
                                                                 <CRow>
-                                                                    <CCol sm='2'>{"Kích thước: "}</CCol>
-                                                                    <CCol sm='2'>{"Chiều dài: " + item.length + " (m)"}</CCol>
-                                                                    <CCol sm='2'>{"Chiều rộng: " + item.width + " (m)"}</CCol>
-                                                                    <CCol sm='2'>{"Chiều cao: " + item.height + " (m)"}</CCol>
+                                                                    <CCol sm='2'>{"Size: "}</CCol>
+                                                                    <CCol sm='2'>{"Length: " + item.length + " (m)"}</CCol>
+                                                                    <CCol sm='2'>{"Width: " + item.width + " (m)"}</CCol>
+                                                                    <CCol sm='2'>{"Height: " + item.height + " (m)"}</CCol>
                                                                 </CRow>
                                                                 <CRow>
                                                                     <CCol sm='12'>{item.excludingProducts.length === 0 ? "" : ("Không chở chung hàng: " + getProducts(item.excludingProducts))}</CCol>
@@ -350,13 +346,21 @@ class Products extends Component {
                                     }
 
                                 />
-                                <CPagination
-                                    activePage={currentPage}
-                                    onActivePageChange={(page) => this.onPageChanged(page)}
-                                    pages={totalPages}
-                                    doubleArrows={true}
-                                    align="center"
-                                />
+                                <CCardBody style={{ display: "flex", justifyContent: "space-between", padding: "0 0" }}>
+                                    <CCardHeader style={{ borderBottom: "none" }}>
+                                        Products Info
+                                        <small className="text-muted"> {totalPages} pages</small>
+                                        <small className="text-muted"> {totalProducts} Products</small>
+                                    </CCardHeader>
+                                    <CPagination
+                                        activePage={currentPage}
+                                        onActivePageChange={(page) => this.onPageChanged(page)}
+                                        pages={totalPages}
+                                        doubleArrows={true}
+                                        align="center"
+                                    />
+                                </CCardBody>
+
                             </CCardBody>
                         </CCard>
                     </CCol>

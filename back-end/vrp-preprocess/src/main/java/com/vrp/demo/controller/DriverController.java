@@ -8,6 +8,7 @@ package com.vrp.demo.controller;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.DriverModel;
 import com.vrp.demo.models.UserSessionModel;
+import com.vrp.demo.models.driver.DriverResponsive;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.response.ResponseData;
 import com.vrp.demo.models.user.DriverEditation;
@@ -40,6 +41,12 @@ public class DriverController {
     public ResponseEntity<ResponseData> signIn(@RequestBody DriverModel driverModel) {
         UserSessionModel userSessionModel = this.driverService.signin(driverModel);
         return this.responsePreProcessor.buildResponseEntity(HttpStatus.OK, userSessionModel == null ? Code.LOGIN_FAIL : Code.LOGIN_SUCCESS, userSessionModel);
+    }
+    @GetMapping({"/getInfo"})
+    public ResponseEntity<ResponseData> getInfo(@RequestBody DriverModel driverModel) {
+        DriverResponsive driverResponsive = driverService.getInfo(driverModel.getId());
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, driverResponsive);
+
     }
 
     @PostMapping({"/change-password"})

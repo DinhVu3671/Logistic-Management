@@ -192,7 +192,7 @@ class Depots extends Component {
             depotsData = this.processDepotsData(depotsData);
         return (
             <CContainer>
-                <CRow style={{display: "flex", justifyContent: "space-between"}}>
+                <CRow style={{ display: "flex", justifyContent: "space-between" }}>
                     <CCol sm='6'>
                         <CCard>
                             <CModal
@@ -260,27 +260,23 @@ class Depots extends Component {
                 <CRow>
                     <CCol >
                         <CCard>
-                            <CCardHeader>
-                                Depots Info
-                                    <small className="text-muted"> {totalPages} pages</small>
-                                <small className="text-muted"> {totalDepots} Depots</small>
-                            </CCardHeader>
+
                             <CCardBody>
                                 <CDataTable
                                     items={depotsData}
                                     fields={[
                                         { key: 'index', label: 'STT' },
-                                        { key: 'name', _classes: 'font-weight-bold', label: 'Tên kho' },
-                                        { key: 'code', label: 'Mã kho' },
+                                        { key: 'name', _classes: 'font-weight-bold', label: 'Depot Name' },
+                                        { key: 'code', label: 'Code' },
                                         // { key: 'longitude', label: 'Kinh độ' },
                                         // { key: 'latitude', label: 'Vĩ độ' },
-                                        { key: 'address', label: 'Địa chỉ' },
-                                        { key: 'startTimeStr', label: 'Thời điểm mở cửa' },
-                                        { key: 'endTimeStr', label: 'Thời điểm đóng cửa' },
+                                        { key: 'address', label: 'Address' },
+                                        { key: 'startTimeStr', label: 'Opening time' },
+                                        { key: 'endTimeStr', label: 'Closing time' },
                                         // { key: 'unloadingCost', label: 'Phí dỡ hàng(VND)' },
                                         {
                                             key: 'actions',
-                                            label: 'Thao tác',
+                                            label: 'Action',
                                         }
 
                                     ]}
@@ -318,13 +314,21 @@ class Depots extends Component {
                                     }}
 
                                 />
-                                <CPagination
-                                    activePage={currentPage}
-                                    onActivePageChange={(page) => this.onPageChanged(page)}
-                                    pages={totalPages}
-                                    doubleArrows={true}
-                                    align="center"
-                                />
+                                <CCardBody style={{ display: "flex", justifyContent: "space-between", padding: "0 0" }}>
+                                    <CCardHeader style={{borderBottom: "none"}}>
+                                        Depots Info
+                                        <small className="text-muted"> {totalPages} pages</small>
+                                        <small className="text-muted"> {totalDepots} Depots</small>
+                                    </CCardHeader>
+                                    <CPagination
+                                        activePage={currentPage}
+                                        onActivePageChange={(page) => this.onPageChanged(page)}
+                                        pages={totalPages}
+                                        doubleArrows={true}
+                                        align="center"
+                                    />
+                                </CCardBody>
+
                             </CCardBody>
                         </CCard>
                     </CCol>

@@ -162,27 +162,27 @@ class DetailOrder extends Component {
                         <CCardHeader>
                             {"Order " + this.state.detailOrder.code + " detail:"}
                             {/* <b> Tên kho hàng: </b>{this.state.detailOrder.depot.name} */}
-                            <b> Tên khách hàng: </b>{this.state.detailOrder.customer.name}
-                            <b> Khung thời gian: </b>{this.state.detailOrder.deliveryMode === "STANDARD" ?
+                            <b> Customer name: </b>{this.state.detailOrder.customer.name}<br></br>
+                            <b> Time frame: </b>{this.state.detailOrder.deliveryMode === "STANDARD" ?
                                 (secondsToHHMMSS(this.state.detailOrder.customer.startTime) + " - " + secondsToHHMMSS(this.state.detailOrder.customer.endTime))
                                 :
                                 (secondsToHHMMSS(this.state.detailOrder.deliveryAfterTime) + " - " + secondsToHHMMSS(this.state.detailOrder.deliveryBeforeTime))
                             }
-                            <b> Thời gian phục vụ(s): </b>{this.state.detailOrder.timeService}
-                            <b> Thời gian lên hàng tại kho(s): </b>{this.state.detailOrder.timeLoading}
+                            <b> Time server(s): </b>{this.state.detailOrder.timeService}<br></br>
+                            <b> Delivery time at the warehouse(s): </b>{this.state.detailOrder.timeLoading}
                         </CCardHeader>
                         <CCardBody>
                             <CDataTable
                                 items={this.state.orderItems}
                                 fields={[
                                     { key: 'index', label: 'STT' },
-                                    { key: 'productCode', label: 'Mã sản phẩm' },
-                                    { key: 'productName', label: 'Tên sản phẩm' },
-                                    { key: 'productWeight', label: 'Khối lượng(kg)' },
-                                    { key: 'productCapacity', label: 'Thể tích(m3)' },
-                                    { key: 'unitPrice', label: 'Đơn giá(VND)' },
-                                    { key: 'quantity', label: 'Số lượng' },
-                                    { key: 'price', label: 'Thành tiền(VND)' },
+                                    { key: 'productCode', label: 'Product Code' },
+                                    { key: 'productName', label: 'Product Name' },
+                                    { key: 'productWeight', label: 'Weight (kg)' },
+                                    { key: 'productCapacity', label: 'Capacity (m3)' },
+                                    { key: 'unitPrice', label: 'Unit Price(VND)' },
+                                    { key: 'quantity', label: 'Quantity' },
+                                    { key: 'price', label: 'Price (VND)' },
 
                                 ]}
                                 hover

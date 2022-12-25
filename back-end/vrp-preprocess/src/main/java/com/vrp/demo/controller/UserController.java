@@ -1,5 +1,6 @@
 package com.vrp.demo.controller;
 
+import com.vrp.demo.entity.common.User;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.UserModel;
 import com.vrp.demo.models.UserSessionModel;
@@ -20,6 +21,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping(value = "/users")
 public class UserController {
 
     @Autowired
@@ -37,17 +39,18 @@ public class UserController {
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userModels);
     }
 
-    @PostMapping(value = {"/users", "/users/", "/sign-up"})
-    public ResponseEntity<ResponseData> signup(@RequestBody @Validated UserModel userModel) throws CustomException {
-        userModel = userService.signup(userModel);
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userModel);
-    }
+//    @PostMapping(value = {"/users", "/users/", "/sign-up"})
+//    public ResponseEntity<ResponseData> signup(@RequestBody @Validated UserModel userModel) throws CustomException {
+//        userModel = userService.signup(userModel);
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userModel);
+//    }
 
-    @PostMapping(value = {"/sign-up-by-gmail"})
-    public ResponseEntity<ResponseData> signupByGmail(@RequestBody UserModel userModel) throws CustomException {
-        userModel = userService.signupByGmail(userModel);
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userModel);
-    }
+//    @PostMapping(value = {"/sign-up-by-gmail"})
+//    public ResponseEntity<ResponseData> signupByGmail(@RequestBody UserModel userModel) throws CustomException {
+//        userModel = userService.signupByGmail(userModel);
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userModel);
+//    }
+
 
     @PostMapping(value = {"/sign-in"})
     public ResponseEntity<ResponseData> signin(@RequestBody UserModel userModel) throws CustomException {
@@ -55,25 +58,30 @@ public class UserController {
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, userSessionModel == null ? Code.LOGIN_FAIL : Code.LOGIN_SUCCESS, userSessionModel);
     }
 
-    @PostMapping(value = {"/sign-out"})
-    public ResponseEntity<ResponseData> signout(@RequestBody UserSessionModel userSessionModel) throws CustomException {
-        userSessionModel = userService.signout(userSessionModel);
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userSessionModel);
-    }
+//    @PostMapping(value = {"/sign-out"})
+//    public ResponseEntity<ResponseData> signout(@RequestBody UserSessionModel userSessionModel) throws CustomException {
+//        userSessionModel = userService.signout(userSessionModel);
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userSessionModel);
+//    }
 
+//    @PostMapping(value = {"/get-current-user"})
+//    public ResponseEntity<ResponseData> getCurrentUser(@RequestBody UserSessionModel userSessionModel) throws CustomException {
+//        userSessionModel = userService.getUserSessionBySessionId(userSessionModel);
+//        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userSessionModel);
+//    }
     @PostMapping(value = {"/get-current-user"})
-    public ResponseEntity<ResponseData> getCurrentUser(@RequestBody UserSessionModel userSessionModel) throws CustomException {
-        userSessionModel = userService.getUserSessionBySessionId(userSessionModel);
-        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, userSessionModel);
+    public ResponseEntity<ResponseData> getCurrentUser(@RequestParam Long id) throws CustomException {
+//        userSessionModel = userService.getUserSessionBySessionId(userSessionModel);
+        User user = userService.getUserById(id);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, user);
     }
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello!";
-    }
-
-    @PostMapping("/test")
-    public String test() {
-        return "test!";
-    }
+//    @GetMapping("/hello")
+//    public String hello() {
+//        return "hello!";
+//    }
+//
+//    @PostMapping("/test")
+//    public String test() {
+//        return "test!";
+//    }
 }

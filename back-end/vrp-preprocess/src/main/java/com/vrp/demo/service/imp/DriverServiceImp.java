@@ -7,10 +7,14 @@ package com.vrp.demo.service.imp;
 
 import com.vrp.demo.entity.common.Role;
 import com.vrp.demo.entity.common.User;
+import com.vrp.demo.entity.tenant.Customer;
+import com.vrp.demo.entity.tenant.Order;
 import com.vrp.demo.entity.tenant.Vehicle;
 import com.vrp.demo.models.DriverModel;
+import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.UserModel;
 import com.vrp.demo.models.UserSessionModel;
+import com.vrp.demo.models.driver.DriverResponsive;
 import com.vrp.demo.models.search.VehicleSearch;
 import com.vrp.demo.models.user.DriverEditation;
 import com.vrp.demo.models.user.UserPassword;
@@ -23,7 +27,10 @@ import com.vrp.demo.service.RoleService;
 import com.vrp.demo.service.UserService;
 import com.vrp.demo.service.UserSessionService;
 import com.vrp.demo.utils.QueryTemplate;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +38,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 @Service("driverService")
 public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle, Long> implements DriverService {
+    @PersistenceContext
+    private EntityManager entityManager;
     private static Logger logger = LoggerFactory.getLogger(UserServiceImp.class);
     @Autowired
     private VehicleRepository vehicleRepository;
@@ -117,6 +129,19 @@ public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle,
         } else {
             return null;
         }
+    }
+
+    @Override
+    public DriverResponsive getInfo(Long idUser) {
+        DriverResponsive driverResponsive = new DriverResponsive();
+
+        User user = userService.find(idUser);
+        driverResponsive.setUser(user);
+
+        Vehicle vehicle = vehicleRepository.getInfoByUserId(idUser);
+        driverResponsive.setVehicle(vehicle);
+
+        return driverResponsive;
     }
 
     @Override
