@@ -33,4 +33,11 @@ public class UserRepositoryImp extends BaseRepositoryImp<User, Long> implements 
         queryTemplate.setQuery(query);
         return findOne(queryTemplate);
     }
+
+    public User findById(Long id) {
+        String query = " from User e where e.id = '"+id+"'";
+        QueryTemplate queryTemplate = new QueryTemplate();
+        queryTemplate.setQuery(query);
+        return findOne(queryTemplate);
+    }
 }

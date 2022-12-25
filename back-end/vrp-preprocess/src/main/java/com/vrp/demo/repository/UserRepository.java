@@ -9,4 +9,5 @@ public interface UserRepository extends BaseRepository<User, Long> {
 
     public User findByEmail(String email);
 
+    public User findById(Long id);
 }

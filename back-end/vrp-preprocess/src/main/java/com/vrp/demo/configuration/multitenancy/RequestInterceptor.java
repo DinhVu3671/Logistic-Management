@@ -38,16 +38,16 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         // remove OPTIONS method to pass Preflight request from browser
-        if (tenantID == null && !request.getMethod().equals("OPTIONS")) {
-            response.getWriter().write("Your session has expired. Please login for new session?");
-            response.setStatus(401);
-            return false;
-        }
-        else {
-            TenantContext.setCurrentTenant(TenantContext.DEFAULT_TENANT);
-//                    tenantID
-            response.setHeader("X-TenantID", tenantID);
-        }
+//        if (tenantID == null && !request.getMethod().equals("OPTIONS")) {
+//            response.getWriter().write("Your session has expired. Please login for new session?");
+//            response.setStatus(401);
+//            return false;
+//        }
+//        else {
+//            TenantContext.setCurrentTenant(TenantContext.DEFAULT_TENANT);
+////                    tenantID
+//            response.setHeader("X-TenantID", tenantID);
+//        }
         return true;
     }
 
