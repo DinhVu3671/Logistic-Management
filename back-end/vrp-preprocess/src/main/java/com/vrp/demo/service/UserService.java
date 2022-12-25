@@ -32,4 +32,5 @@ public interface UserService extends BaseService<User, Long> {
     public UserSessionModel getUserSessionBySessionId(UserSessionModel userSessionModel);
     public User created(User user);
 
+    public User getUserById(Long id);
 }
