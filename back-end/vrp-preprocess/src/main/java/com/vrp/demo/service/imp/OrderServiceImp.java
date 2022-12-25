@@ -1,5 +1,6 @@
 package com.vrp.demo.service.imp;
 
+import com.vrp.demo.entity.common.User;
 import com.vrp.demo.entity.tenant.Customer;
 import com.vrp.demo.entity.tenant.Depot;
 import com.vrp.demo.entity.tenant.Order;
@@ -19,6 +20,7 @@ import com.vrp.demo.repository.OrderRepository;
 import com.vrp.demo.service.CustomerService;
 import com.vrp.demo.service.OrderItemService;
 import com.vrp.demo.service.OrderService;
+import com.vrp.demo.service.UserService;
 import com.vrp.demo.utils.CommonUtils;
 import com.vrp.demo.utils.QueryTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +40,8 @@ import java.util.*;
 @Service("orderService")
 public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long> implements OrderService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
@@ -45,6 +52,8 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
     private OrderItemService orderItemService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private UserService userService;
 
     private QueryTemplate buildQuery(OrderSearch search) {
         QueryTemplate queryTemplate = getBaseQuery(search);
@@ -79,6 +88,31 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
             OrderModel model = Order.convertToModel(order);
             return model;
         });
+    }
+    @Override
+    public List<OrderModel> getOrdersByCustomer(Long userId) {
+        Customer customer = customerService.getCustomerByUserId(userId);
+//        User user = userService.find(userId);
+        List<OrderModel> orderModels = new ArrayList<>();
+//        QueryTemplate queryTemplate = buildQuery(search);
+
+//        QueryTemplate queryTemplate = getBaseQuery(search);
+        QueryTemplate queryTemplate = new QueryTemplate();
+        HashMap<String, Object> params = queryTemplate.getParameterMap();
+
+        String querysentence = "Select * from orders where ";
+        querysentence += " customer_id = :id ";
+        params.put("id", customer.getId());
+//        queryTemplate.setPageable(search.getPageable());
+        queryTemplate.setQuery(querysentence);
+        queryTemplate.setParameterMap(params);
+
+        Query query = entityManager.createNativeQuery(queryTemplate.getQuery(), Order.class).setParameter("id", customer.getId());
+        List<Order> orders = query.getResultList();
+        for (Order order : orders) {
+            orderModels.add(Order.convertToModel(order));
+        }
+        return orderModels;
     }
 
     @Override
@@ -183,6 +217,7 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
     public List<SalesModels> searchByYear(String year) throws ParseException {
         return orderRepository.searchByYear(year);
     }
+
 
     @Override
     public OrderRepository getRepository() {

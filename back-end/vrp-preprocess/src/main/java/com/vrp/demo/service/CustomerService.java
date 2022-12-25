@@ -31,4 +31,5 @@ public interface CustomerService extends BaseService<Customer, Long>{
     public List<CustomerModel> findAllWithCorrelations();
     public CustomerModelSignUp signupByGmail(CustomerModelSignUp customerModelSignUp);
     public UserSessionModel signin(CustomerModelSignUp customerModelSignUp);
+    public Customer getCustomerByUserId (Long userId);
 }

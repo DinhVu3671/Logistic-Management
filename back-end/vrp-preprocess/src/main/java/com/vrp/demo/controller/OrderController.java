@@ -26,11 +26,16 @@ public class OrderController {
 
     @PostMapping(value = {"/search"})
     public ResponseEntity<ResponseData> search(@RequestBody OrderSearch search) {
-        if (!search.isPaged()) {
+        if (search.isPaged()) {
             List<OrderModel> orderModels = orderService.find(search);
             return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModels);
         }
         Page<OrderModel> orderModels = orderService.search(search);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModels);
+    }
+    @PostMapping(value = {"/getOrdersByCustomer"})
+    public ResponseEntity<ResponseData> getOrdersByCustomer(@RequestBody OrderSearch orderSearch) {
+        List<OrderModel> orderModels = orderService.getOrdersByCustomer(orderSearch.getUserId());
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModels);
     }
 
