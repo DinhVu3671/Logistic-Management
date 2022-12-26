@@ -1,2 +1,4 @@
 .idea/
 *.class
+back-end/vrp-preprocess/target/*.class
+frontend/yarn.lock
