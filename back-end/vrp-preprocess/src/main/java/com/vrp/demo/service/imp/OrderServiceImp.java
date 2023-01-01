@@ -12,6 +12,7 @@ import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.dashboard.SalesModels;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.enu.DeliveryMode;
+import com.vrp.demo.models.orders.OrderModelCreate;
 import com.vrp.demo.models.search.CustomerSearch;
 import com.vrp.demo.models.search.OrderSearch;
 import com.vrp.demo.repository.CustomerRepository;
@@ -117,30 +118,39 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
 
     @Override
     @Transactional(readOnly = false)
-    public OrderModel create(OrderModel orderModel) throws CustomException {
-        Customer customer = customerRepository.find(orderModel.getCustomer().getId());
+    public OrderModel create(OrderModelCreate orderModelCreate) throws CustomException {
+        Customer customer = customerRepository.find(orderModelCreate.getCustomerId());
         if (customer == null)
             throw CommonUtils.createException(Code.CUSTOMER_ID_NOT_EXISTED);
 //        Depot depot = depotRepository.find(orderModel.getDepot().getId());
 //        if (depot == null)
 //            throw CommonUtils.createException(Code.DEPOT_ID_NOT_EXISTED);
-        Order order = OrderModel.convertToEntity(orderModel);
+        Order orderTmp = new Order();
+
+//        Order order = OrderModel.convertToEntity(orderModel);
 //        order.setDepot(depot);
-        if (order.getDeliveryMode().equals(DeliveryMode.STANDARD)) {
-            order.setDeliveryBeforeTime(customer.getEndTime());
-            order.setDeliveryAfterTime(customer.getStartTime());
+        orderTmp.setDeliveryMode(orderModelCreate.getDeliveryMode());
+        if (orderModelCreate.getDeliveryMode().equals(DeliveryMode.STANDARD)) {
+            orderTmp.setDeliveryBeforeTime(customer.getEndTime());
+            orderTmp.setDeliveryAfterTime(customer.getStartTime());
         }
-        order.setCustomer(customer);
-        order = create(order);
-        for (OrderItemModel orderItemModel : orderModel.getOrderItems()) {
-            orderItemModel.setOrder(Order.convertToModel(order));
+        orderTmp.setTimeService(orderModelCreate.getTimeService());
+        orderTmp.setTimeLoading(orderModelCreate.getTimeLoading());
+        orderTmp.setStatus("Waiting");
+        orderTmp.setCustomer(customer);
+        orderTmp = create(orderTmp);
+
+        for (OrderItemModel orderItemModel : orderModelCreate.getOrderItems()) {
+            OrderModel orderModel = new OrderModel();
+            orderModel.setId(orderTmp.getId());
+            orderItemModel.setOrder(orderModel);
         }
-        List<OrderItem> orderItems = orderItemService.create(orderModel.getOrderItems());
-        order.setOrderItems(orderItems);
-        order.calculateTotal();
-        order.setCode("O" + order.getId());
-        order = update(order);
-        orderModel = Order.convertToModel(order);
+        List<OrderItem> orderItems = orderItemService.create(orderModelCreate.getOrderItems());
+        orderTmp.setOrderItems(orderItems);
+        orderTmp.calculateTotal();
+        orderTmp.setCode("O" + orderTmp.getId());
+        orderTmp = update(orderTmp);
+        OrderModel orderModel = Order.convertToModel(orderTmp);
         return orderModel;
     }
 
@@ -208,7 +218,7 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
 //            if (customer.getId() == 376) {
             OrderModel orderModel = orderModels.get(customer.getId().intValue() % 8).clone();
             orderModel.setCustomer(customer);
-            create(orderModel);
+//            create(orderModel);
             }
         }
     }
