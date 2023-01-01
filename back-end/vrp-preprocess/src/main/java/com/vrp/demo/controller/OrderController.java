@@ -3,6 +3,7 @@ package com.vrp.demo.controller;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.enu.Code;
+import com.vrp.demo.models.orders.OrderModelCreate;
 import com.vrp.demo.models.response.ResponseData;
 import com.vrp.demo.models.search.OrderSearch;
 import com.vrp.demo.service.OrderService;
@@ -46,8 +47,8 @@ public class OrderController {
     }
 
     @PostMapping(value = {""})
-    public ResponseEntity<ResponseData> create(@RequestBody OrderModel orderModel) throws CustomException {
-        orderModel = orderService.create(orderModel);
+    public ResponseEntity<ResponseData> create(@RequestBody OrderModelCreate orderModelCreate) throws CustomException {
+        OrderModel orderModel = orderService.create(orderModelCreate);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
     }
 

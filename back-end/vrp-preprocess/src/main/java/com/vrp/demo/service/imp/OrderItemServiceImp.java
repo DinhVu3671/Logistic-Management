@@ -41,6 +41,7 @@ public class OrderItemServiceImp extends BaseServiceImp<OrderItemRepository, Ord
         Order order = orderRepository.find(orderItemModel.getOrder().getId());
         if (order == null)
             throw CommonUtils.createException(Code.ORDER_ID_NOT_EXISTED);
+        orderItemModel.setProduct(Product.convertToModel(product));
         OrderItem orderItem = OrderItemModel.convertToEntity(orderItemModel);
         orderItem.setProduct(product);
         orderItem.calculateTotal();

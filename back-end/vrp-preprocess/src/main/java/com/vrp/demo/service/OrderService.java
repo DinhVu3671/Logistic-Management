@@ -4,6 +4,7 @@ import com.vrp.demo.entity.tenant.Order;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.dashboard.SalesModels;
+import com.vrp.demo.models.orders.OrderModelCreate;
 import com.vrp.demo.models.search.OrderSearch;
 import org.springframework.data.domain.Page;
 
@@ -16,7 +17,7 @@ public interface OrderService extends BaseService<Order, Long> {
 
     public Page<OrderModel> search(OrderSearch search);
 
-    public OrderModel create(OrderModel orderModel) throws CustomException;
+    public OrderModel create(OrderModelCreate orderModelCreate) throws CustomException;
 
     public OrderModel update(OrderModel orderModel) throws CustomException;
 
