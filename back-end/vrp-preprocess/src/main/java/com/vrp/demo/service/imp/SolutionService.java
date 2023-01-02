@@ -27,7 +27,7 @@ public class SolutionService {
     public Page<DeliveryPlan> search(DeliveryPlanSearch search) {
         return deliveryPlanRepository.searchDeliveryPlan(search);
     }
-    public Solution getSolutionByDriver(Long vehicleId) {
+    public List<Solution> getSolutionByDriver(Long vehicleId) {
         return deliveryPlanRepository.getSolutionByDriver(vehicleId);
     }
 

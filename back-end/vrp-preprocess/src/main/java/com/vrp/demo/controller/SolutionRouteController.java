@@ -65,7 +65,7 @@ public class SolutionRouteController {
     }
     @PostMapping("/getSolutionByDriver")
     public ResponseEntity<ResponseData> getSolutionByDriver(@RequestBody DeliveryPlan deliveryPlan) {
-        Solution solutions = solutionService.getSolutionByDriver(deliveryPlan.getVehicleId());
+        List<Solution> solutions = solutionService.getSolutionByDriver(deliveryPlan.getVehicleId());
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, solutions);
     }
 

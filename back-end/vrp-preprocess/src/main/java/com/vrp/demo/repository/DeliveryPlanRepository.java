@@ -5,6 +5,8 @@ import com.vrp.demo.models.search.DeliveryPlanSearch;
 import com.vrp.demo.models.solution.Solution;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface DeliveryPlanRepository {
 
     public DeliveryPlan createDeliveryPlan(DeliveryPlan deliveryPlan);
@@ -14,6 +16,6 @@ public interface DeliveryPlanRepository {
     public Page<DeliveryPlan> searchDeliveryPlan(DeliveryPlanSearch search);
 
     public DeliveryPlan getDeliveryPlan(Long id);
-    public Solution getSolutionByDriver(Long vehicleId);
+    public List<Solution> getSolutionByDriver(Long vehicleId);
 
 }

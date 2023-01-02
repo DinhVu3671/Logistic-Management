@@ -86,21 +86,25 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
     }
 
     @Override
-    public Solution getSolutionByDriver(Long vehicleId) {
+    public List<Solution> getSolutionByDriver(Long vehicleId) {
         Query query = new Query();
         query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("vehicle._id").is(vehicleId)));
 
-        DeliveryPlan results = mongoTemplate.findOne(query, DeliveryPlan.class);
-        Solution solution = results.getSolution();
-        List<Journey> journeys = solution.getJourneys();
-        List<Journey> journeyList = new ArrayList<>();
-        journeys.forEach((item) -> {
-            if(item.getVehicle().getId().equals(vehicleId)) {
-                journeyList.add(item);
-                solution.setJourneys(journeyList);
-            }
-        });
-        return solution;
+        List<DeliveryPlan> results = mongoTemplate.find(query, DeliveryPlan.class);
+        List<Solution> solutionList = new ArrayList<>();
+        for(DeliveryPlan deliveryPlan : results) {
+            Solution solution = deliveryPlan.getSolution();
+            List<Journey> journeys = solution.getJourneys();
+            List<Journey> journeyList = new ArrayList<>();
+            journeys.forEach((item) -> {
+                if(item.getVehicle().getId().equals(vehicleId)) {
+                    journeyList.add(item);
+                    solution.setJourneys(journeyList);
+                }
+            });
+            solutionList.add(solution);
+        }
+        return solutionList;
     }
 
 
