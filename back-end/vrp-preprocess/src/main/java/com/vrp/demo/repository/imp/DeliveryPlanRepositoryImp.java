@@ -58,6 +58,7 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
         deliveryPlan.getProblemAssumption().setObjectId();
         deliveryPlan.setCreatedAt(new Date(CommonUtils.getCurrentTime().getTime()));
         deliveryPlan.setUpdatedAt(new Date(CommonUtils.getCurrentTime().getTime()));
+        deliveryPlan.setStatus("Waiting");
         return mongoTemplate.save(deliveryPlan);
     }
 
@@ -88,7 +89,7 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
     @Override
     public Solution getSolutionByDriver(Long vehicleId) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("vehicle._id").is(vehicleId)));
+        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("vehicle._id").is(vehicleId)).and("status").is("Waiting"));
 
         DeliveryPlan results = mongoTemplate.findOne(query, DeliveryPlan.class);
         Solution solution = results.getSolution();
