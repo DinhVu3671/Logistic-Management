@@ -173,28 +173,29 @@ public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle,
     @Override
     @Transactional
     public UserSessionModel editInfo(DriverEditation driverEditation) {
-        User user = null;
-        Vehicle vehicle = null;
-        UserModel userModel = null;
-
-        try {
-            user = this.userRepository.findByEmail(driverEditation.getDriverEmail());
-            System.out.println(user.getUserName());
-            vehicle = this.vehicleRepository.findByUserId(user.getId());
-            System.out.println(vehicle.getDriverName());
-            if (user == null) {
-                return null;
-            }
-        } catch (Exception var5) {
-            logger.info(var5.getMessage());
-            return null;
-        }
-
-        user.setPhoneNumber(driverEditation.getPhoneNumber());
-        vehicle.setMaxCapacity(driverEditation.getMaxCapacity());
-        vehicle.setMaxVelocity(driverEditation.getMaxVelocity());
-        vehicle.setMaxLoadWeight(driverEditation.getMaxLoadWeight());
-        userModel = User.convertToModel(user, true);
+//        User user = null;
+//        Vehicle vehicle = null;
+//        UserModel userModel = null;
+//
+//        try {
+//            user = this.userRepository.findByEmail(driverEditation.getDriverEmail());
+//            System.out.println(user.getUserName());
+//            vehicle = this.vehicleRepository.findByUserId(user.getId());
+//            System.out.println(vehicle.getDriverName());
+//            if (user == null) {
+//                return null;
+//            }
+//        } catch (Exception var5) {
+//            logger.info(var5.getMessage());
+//            return null;
+//        }
+//
+//        user.setPhoneNumber(driverEditation.getPhoneNumber());
+//        vehicle.setMaxCapacity(driverEditation.getMaxCapacity());
+//        vehicle.setMaxVelocity(driverEditation.getMaxVelocity());
+//        vehicle.setMaxLoadWeight(driverEditation.getMaxLoadWeight());
+//        userModel = User.convertToModel(user, true);
+        UserModel userModel = new UserModel();
         UserSessionModel var4 = this.userSessionService.createUserSession(userModel);
 
         return var4;

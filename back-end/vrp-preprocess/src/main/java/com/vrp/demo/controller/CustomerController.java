@@ -1,5 +1,6 @@
 package com.vrp.demo.controller;
 
+import com.vrp.demo.entity.tenant.Customer;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.CustomerModel;
 import com.vrp.demo.models.CustomerModelSignUp;
@@ -60,12 +61,16 @@ public class CustomerController {
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customerModel);
     }
 
-    @GetMapping(value = {"/{id}"})
-    public ResponseEntity<ResponseData> detail(@PathVariable Long id) throws CustomException {
+    @GetMapping(value = {""})
+    public ResponseEntity<ResponseData> detail(@RequestParam Long id) throws CustomException {
         CustomerModel customerModel = customerService.findOne(id);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customerModel);
     }
-
+    @GetMapping(value = {"/getCustomer"})
+    public ResponseEntity<ResponseData> getCustomerByUserId(@RequestParam Long userId) throws CustomException {
+        Customer customer = customerService.getCustomerByUserId(userId);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, customer);
+    }
     @DeleteMapping(value = {"/{id}"})
     public ResponseEntity<ResponseData> delete(@PathVariable Long id) throws CustomException {
         int deletedNumber = customerService.delete(id);

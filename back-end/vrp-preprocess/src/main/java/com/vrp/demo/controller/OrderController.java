@@ -40,20 +40,20 @@ public class OrderController {
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModels);
     }
 
-    @GetMapping(value = {"/{id}"})
-    public ResponseEntity<ResponseData> getDetail(@PathVariable Long id) {
+    @GetMapping(value = {""})
+    public ResponseEntity<ResponseData> getDetail(@RequestParam Long id) {
         OrderModel orderModel = orderService.findOne(id);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
     }
 
-    @PostMapping(value = {""})
+    @PostMapping(value = {"/create"})
     public ResponseEntity<ResponseData> create(@RequestBody OrderModelCreate orderModelCreate) throws CustomException {
         OrderModel orderModel = orderService.create(orderModelCreate);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
     }
 
 
-    @PutMapping(value = {"/{id}"})
+    @PostMapping(value = {"/update"})
     public ResponseEntity<ResponseData> update(@RequestBody OrderModel orderModel) throws CustomException {
         orderModel = orderService.update(orderModel);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
