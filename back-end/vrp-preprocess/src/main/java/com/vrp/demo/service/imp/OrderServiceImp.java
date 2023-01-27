@@ -136,7 +136,7 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
         }
         orderTmp.setTimeService(orderModelCreate.getTimeService());
         orderTmp.setTimeLoading(orderModelCreate.getTimeLoading());
-        orderTmp.setStatus("Waiting");
+        orderTmp.setStatus("created");
         orderTmp.setCustomer(customer);
         orderTmp = create(orderTmp);
 
