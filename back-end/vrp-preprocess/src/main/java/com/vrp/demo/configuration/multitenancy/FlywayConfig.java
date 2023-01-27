@@ -27,19 +27,19 @@ public class FlywayConfig {
         return flyway;
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(UserRepositoryImp repository, DataSource dataSource) {
-        return args -> {
-            repository.findAll().forEach(user -> {
-                String tenant = user.getUserName();
-                logger.info("Migrate for schema: " + tenant);
-                Flyway flyway = Flyway.configure()
-                        .locations("db/migration/tenants")
-                        .dataSource(dataSource)
-                        .schemas(tenant)
-                        .load();
-                flyway.migrate();
-            });
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(UserRepositoryImp repository, DataSource dataSource) {
+//        return args -> {
+//            repository.findAll().forEach(user -> {
+//                String tenant = user.getUserName();
+//                logger.info("Migrate for schema: " + tenant);
+//                Flyway flyway = Flyway.configure()
+//                        .locations("db/migration/tenants")
+//                        .dataSource(dataSource)
+//                        .schemas(tenant)
+//                        .load();
+//                flyway.migrate();
+//            });
+//        };
+//    }
 }
