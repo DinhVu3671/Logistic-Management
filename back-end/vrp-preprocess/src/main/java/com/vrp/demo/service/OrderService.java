@@ -17,7 +17,7 @@ public interface OrderService extends BaseService<Order, Long> {
 
     public Page<OrderModel> search(OrderSearch search);
 
-    public OrderModel create(OrderModelCreate orderModelCreate) throws CustomException;
+    public OrderModel create(OrderModel orderModel) throws CustomException;
 
     public OrderModel update(OrderModel orderModel) throws CustomException;
 

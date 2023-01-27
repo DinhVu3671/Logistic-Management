@@ -118,39 +118,32 @@ public class OrderServiceImp extends BaseServiceImp<OrderRepository, Order, Long
 
     @Override
     @Transactional(readOnly = false)
-    public OrderModel create(OrderModelCreate orderModelCreate) throws CustomException {
-        Customer customer = customerRepository.find(orderModelCreate.getCustomerId());
+    public OrderModel create(OrderModel orderModel) throws CustomException {
+        Customer customer = customerRepository.find(orderModel.getCustomer().getId());
         if (customer == null)
             throw CommonUtils.createException(Code.CUSTOMER_ID_NOT_EXISTED);
 //        Depot depot = depotRepository.find(orderModel.getDepot().getId());
 //        if (depot == null)
 //            throw CommonUtils.createException(Code.DEPOT_ID_NOT_EXISTED);
-        Order orderTmp = new Order();
 
-//        Order order = OrderModel.convertToEntity(orderModel);
+        Order order = OrderModel.convertToEntity(orderModel);
 //        order.setDepot(depot);
-        orderTmp.setDeliveryMode(orderModelCreate.getDeliveryMode());
-        if (orderModelCreate.getDeliveryMode().equals(DeliveryMode.STANDARD)) {
-            orderTmp.setDeliveryBeforeTime(customer.getEndTime());
-            orderTmp.setDeliveryAfterTime(customer.getStartTime());
+        if (order.getDeliveryMode().equals(DeliveryMode.STANDARD)) {
+            order.setDeliveryBeforeTime(customer.getEndTime());
+            order.setDeliveryAfterTime(customer.getStartTime());
         }
-        orderTmp.setTimeService(orderModelCreate.getTimeService());
-        orderTmp.setTimeLoading(orderModelCreate.getTimeLoading());
-        orderTmp.setStatus("created");
-        orderTmp.setCustomer(customer);
-        orderTmp = create(orderTmp);
+        order.setCustomer(customer);
+        order = create(order);
+        for (OrderItemModel orderItemModel : orderModel.getOrderItems()) {
+            orderItemModel.setOrder(Order.convertToModel(order));
+        }
 
-        for (OrderItemModel orderItemModel : orderModelCreate.getOrderItems()) {
-            OrderModel orderModel = new OrderModel();
-            orderModel.setId(orderTmp.getId());
-            orderItemModel.setOrder(orderModel);
-        }
-        List<OrderItem> orderItems = orderItemService.create(orderModelCreate.getOrderItems());
-        orderTmp.setOrderItems(orderItems);
-        orderTmp.calculateTotal();
-        orderTmp.setCode("O" + orderTmp.getId());
-        orderTmp = update(orderTmp);
-        OrderModel orderModel = Order.convertToModel(orderTmp);
+        List<OrderItem> orderItems = orderItemService.create(orderModel.getOrderItems());
+        order.setOrderItems(orderItems);
+        order.calculateTotal();
+        order.setCode("O" + order.getId());
+        order = update(order);
+        orderModel = Order.convertToModel(order);
         return orderModel;
     }
 

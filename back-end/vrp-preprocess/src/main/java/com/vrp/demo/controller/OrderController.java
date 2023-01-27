@@ -47,8 +47,8 @@ public class OrderController {
     }
 
     @PostMapping(value = {"/create"})
-    public ResponseEntity<ResponseData> create(@RequestBody OrderModelCreate orderModelCreate) throws CustomException {
-        OrderModel orderModel = orderService.create(orderModelCreate);
+    public ResponseEntity<ResponseData> create(@RequestBody OrderModel orderModel) throws CustomException {
+        orderModel = orderService.create(orderModel);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
     }
 
