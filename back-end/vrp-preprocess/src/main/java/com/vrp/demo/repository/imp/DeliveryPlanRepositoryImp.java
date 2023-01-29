@@ -64,6 +64,12 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
         deliveryPlan.setCreatedAt(new Date(CommonUtils.getCurrentTime().getTime()));
         deliveryPlan.setUpdatedAt(new Date(CommonUtils.getCurrentTime().getTime()));
         deliveryPlan.setStatus(deliveryPlan.getSolution().getJourneys().size());
+        for(Journey journey: deliveryPlan.getSolution().getJourneys()) {
+            journey.setStatus(journey.getRoutes().size());
+            for(Route route: journey.getRoutes()) {
+                route.setStatus(route.getOrders().size());
+            }
+        }
         return mongoTemplate.save(deliveryPlan);
     }
 
