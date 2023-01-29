@@ -30,24 +30,23 @@ import {
 import CIcon from '@coreui/icons-react'
 import MainChartExample from '../charts/MainChartExample';
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import SalesCharst from '../charts/SalesCharst';
 
 
-const Dashboard = () => {
-  return (
-    <>
-      <CContainer style={{backgroundColor: "white"}}>
-        <CRow>
-          <MainChartExample />
-        </CRow>
-        <CRow>
-          <SalesCharst />
-        </CRow>
-      </CContainer>
-    </>
-  )
+class Dashboard extends Component {
+  render() {
+    return (
+        <CContainer style={{backgroundColor: "white"}}>
+          <CRow>
+            <MainChartExample />
+            <SalesCharst />
+          </CRow>          
+        </CContainer>
+      
+    )
+  }
 }
 
-export default Dashboard
+export default Dashboard;
