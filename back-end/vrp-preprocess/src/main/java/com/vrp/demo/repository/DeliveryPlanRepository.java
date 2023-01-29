@@ -18,7 +18,7 @@ public interface DeliveryPlanRepository {
     public Page<DeliveryPlan> searchDeliveryPlan(DeliveryPlanSearch search);
 
     public DeliveryPlan getDeliveryPlan(Long id);
-    public Solution getSolutionByDriver(Long vehicleId);
+    public List<Solution> getSolutionByDriver(Long vehicleId);
     public Boolean checkRouter(String idRouter);
     public Journey updateOrderInRouter(UpdateRouterRequest updateRouterRequest);
 
