@@ -164,9 +164,9 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
                                 orderModel.setStatus(updateRouterRequest.getStatus());
                                 if(updateRouterRequest.getStatus().equals("Done")) {
                                     route.setStatus(route.getStatus()-1);
-                                    if((route.getStatus()-1) == 0) {
+                                    if((route.getStatus()) == 0) {
                                         journey.setStatus(journey.getStatus()-1);
-                                        if(journey.getStatus()-1 == 0) {
+                                        if(journey.getStatus() == 0) {
                                            results.setStatus(results.getStatus()-1);
                                         }
                                     }
