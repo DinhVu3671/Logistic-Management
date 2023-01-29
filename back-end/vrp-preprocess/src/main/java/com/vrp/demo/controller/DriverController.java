@@ -5,6 +5,7 @@
 
 package com.vrp.demo.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vrp.demo.exception.CustomException;
 import com.vrp.demo.models.DriverModel;
 import com.vrp.demo.models.UserSessionModel;

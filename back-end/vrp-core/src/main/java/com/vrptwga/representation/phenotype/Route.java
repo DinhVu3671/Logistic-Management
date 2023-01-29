@@ -343,6 +343,9 @@ public class Route {
 
     public boolean isViolateTimeWindowDepot() {
         TimeWindow timeWindowAtEndDepot = timeline.get(timeline.size() - 1);
+        System.err.println("timeline:" + this.timelineToString());
+        System.err.println("endDepot:" + endDepot.getEndTime());
+        System.err.println("timeWindowAtEndDepot:" + timeWindowAtEndDepot.getStartTime());
         return endDepot.getEndTime() < timeWindowAtEndDepot.getStartTime();
     }
 
@@ -891,11 +894,13 @@ public class Route {
     }
 
     public List<Depot> getValidEndDepots(OptimizationScenario optimizationScenario) {
+        System.out.println("OptimizationScenarios=================" + optimizationScenario.getDepots().size());
         List<Depot> validEndDepots = new ArrayList<>();
         for (Depot depotInput : optimizationScenario.getDepots()) {
             Route routeClone = clone(this);
             routeClone.setEndDepot(depotInput);
             routeClone.updateRoute(optimizationScenario);
+            System.out.println("isViolateTimeWindowDepot=================" + routeClone.isViolateTimeWindowDepot());
             if (!routeClone.isViolateTimeWindowDepot())
                 validEndDepots.add(depotInput);
         }
@@ -904,6 +909,7 @@ public class Route {
 
     public Depot randomEndDepot(OptimizationScenario optimizationScenario) {
         List<Depot> validEndDepots = getValidEndDepots(optimizationScenario);
+        System.out.println("valid depots=================" + validEndDepots);
         int randomIndex = randomGenerator.nextInt(validEndDepots.size());
         return validEndDepots.get(randomIndex);
     }

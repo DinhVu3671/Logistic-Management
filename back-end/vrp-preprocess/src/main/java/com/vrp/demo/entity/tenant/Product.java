@@ -27,6 +27,7 @@ public class Product extends BaseEntity {
     private double length;
     private double width;
     private double height;
+    private String avatar;
     @ManyToOne
     @JoinColumn(name = "goods_group_id")
     private GoodsGroup goodsGroups;
