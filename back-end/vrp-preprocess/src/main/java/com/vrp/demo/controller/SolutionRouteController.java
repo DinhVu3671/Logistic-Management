@@ -4,9 +4,7 @@ import com.vrp.demo.entity.tenant.mongo.DeliveryPlan;
 import com.vrp.demo.models.enu.Code;
 import com.vrp.demo.models.response.ResponseData;
 import com.vrp.demo.models.search.DeliveryPlanSearch;
-import com.vrp.demo.models.solution.ProblemAssumption;
-import com.vrp.demo.models.solution.Solution;
-import com.vrp.demo.models.solution.SolutionDTO;
+import com.vrp.demo.models.solution.*;
 import com.vrp.demo.service.imp.SolutionRouteService;
 import com.vrp.demo.service.imp.SolutionService;
 import com.vrp.demo.utils.ResponsePreProcessor;
@@ -67,6 +65,16 @@ public class SolutionRouteController {
     public ResponseEntity<ResponseData> getSolutionByDriver(@RequestBody DeliveryPlan deliveryPlan) {
         List<Solution> solutions = solutionService.getSolutionByDriver(deliveryPlan.getVehicleId());
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, solutions);
+    }
+    @GetMapping("/checkRouter/{idRouter}")
+    public ResponseEntity<ResponseData> checkRouter(@PathVariable String idRouter) {
+        Boolean check = solutionService.checkRouter(idRouter);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, check);
+    }
+    @PutMapping("/updateOrderInRouter")
+    public ResponseEntity<ResponseData> updateOrderInRouter(@RequestBody UpdateRouterRequest updateRouterRequest) {
+        Journey journey = solutionService.updateOrderInRouter(updateRouterRequest);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, journey);
     }
 
     @PostMapping("/tracking")

@@ -2,7 +2,9 @@ package com.vrp.demo.service.imp;
 
 import com.vrp.demo.entity.tenant.mongo.DeliveryPlan;
 import com.vrp.demo.models.search.DeliveryPlanSearch;
+import com.vrp.demo.models.solution.Journey;
 import com.vrp.demo.models.solution.Solution;
+import com.vrp.demo.models.solution.UpdateRouterRequest;
 import com.vrp.demo.repository.DeliveryPlanRepository;
 import com.vrp.demo.repository.JourneyDriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,12 @@ public class SolutionService {
     }
     public List<Solution> getSolutionByDriver(Long vehicleId) {
         return deliveryPlanRepository.getSolutionByDriver(vehicleId);
+    }
+    public Boolean checkRouter(String idRouter) {
+        return deliveryPlanRepository.checkRouter(idRouter);
+    }
+    public Journey updateOrderInRouter(UpdateRouterRequest updateRouterRequest) {
+        return deliveryPlanRepository.updateOrderInRouter(updateRouterRequest);
     }
 
     public DeliveryPlan tracking(Long id) {

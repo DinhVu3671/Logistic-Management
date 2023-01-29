@@ -38,6 +38,7 @@ public class Journey {
     private VehicleModel vehicle;
     private Double totalPenaltyCost;
     private Double fixedCost;
+    private Integer status;
 
     public static Journey createJourney(com.vrptwga.representation.phenotype.Journey journey, ProblemAssumption problemAssumption) {
         Journey journeyInfo = new Journey();
