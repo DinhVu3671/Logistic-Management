@@ -1,9 +1,12 @@
 package com.vrp.demo.repository.imp;
 
 import com.vrp.demo.entity.tenant.mongo.DeliveryPlan;
+import com.vrp.demo.models.OrderModel;
 import com.vrp.demo.models.search.DeliveryPlanSearch;
 import com.vrp.demo.models.solution.Journey;
+import com.vrp.demo.models.solution.Route;
 import com.vrp.demo.models.solution.Solution;
+import com.vrp.demo.models.solution.UpdateRouterRequest;
 import com.vrp.demo.repository.DeliveryPlanRepository;
 import com.vrp.demo.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,14 @@ import org.springframework.data.domain.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.UpdateDefinition;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Repository(value = "deliveryPlanRepositoryImp")
 public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
@@ -58,7 +63,7 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
         deliveryPlan.getProblemAssumption().setObjectId();
         deliveryPlan.setCreatedAt(new Date(CommonUtils.getCurrentTime().getTime()));
         deliveryPlan.setUpdatedAt(new Date(CommonUtils.getCurrentTime().getTime()));
-        deliveryPlan.setStatus("Waiting");
+        deliveryPlan.setStatus(deliveryPlan.getSolution().getJourneys().size());
         return mongoTemplate.save(deliveryPlan);
     }
 
@@ -88,12 +93,16 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
 
     @Override
     public Solution getSolutionByDriver(Long vehicleId) {
+        Solution solution = new Solution();
         Query query = new Query();
-        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("vehicle._id").is(vehicleId)).and("status").is("Waiting"));
+        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("vehicle._id").is(vehicleId).and("status").gt(0)).and("status").gt(0));
 
         DeliveryPlan results = mongoTemplate.findOne(query, DeliveryPlan.class);
-        Solution solution = results.getSolution();
-        List<Journey> journeys = solution.getJourneys();
+        if(results == null) {
+            return solution;
+        }
+        Solution solutiontmp = results.getSolution();
+        List<Journey> journeys = solutiontmp.getJourneys();
         List<Journey> journeyList = new ArrayList<>();
         journeys.forEach((item) -> {
             if(item.getVehicle().getId().equals(vehicleId)) {
@@ -104,5 +113,69 @@ public class DeliveryPlanRepositoryImp implements DeliveryPlanRepository {
         return solution;
     }
 
+    @Override
+    public Boolean checkRouter(String idRouter) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("_id").is(idRouter)));
 
+        DeliveryPlan results = mongoTemplate.findOne(query, DeliveryPlan.class);
+        if(results == null) {
+            throw new NullPointerException();
+        }
+        AtomicReference<Boolean> check = new AtomicReference<>(new Boolean(false));
+//        Solution solutiontmp = results.getSolution();
+        for (Journey journey: results.getSolution().getJourneys()){
+            if(journey.getId().equals(idRouter)) {
+                if(journey.getStatus()-1 == 0) {
+                    check.set(true);
+                }
+                journey.setStatus(journey.getStatus()-1);
+                mongoTemplate.save(results, "delivery_plan");
+            }
+        }
+//        List<Journey> journeysTmp = solutiontmp.getJourneys();
+//        Journey journeys = journeysTmp.stream().filter((t) -> t.getId().equals(idRouter)).findFirst().orElse(null);
+//
+//        if(journeys.getStatus() - 1 == 0) {
+//            check.set(true);
+//        }
+        return check.get();
+    }
+
+    @Override
+    public Journey updateOrderInRouter(UpdateRouterRequest updateRouterRequest) {
+        Journey journeyFinal = new Journey();
+        Query query = new Query();
+        query.addCriteria(Criteria.where("solution.journeys").elemMatch(Criteria.where("_id").is(updateRouterRequest.getJourneyId())));
+
+        DeliveryPlan results = mongoTemplate.findOne(query, DeliveryPlan.class);
+        if(results == null) {
+            throw new NullPointerException();
+        }
+        for (Journey journey: results.getSolution().getJourneys()) {
+            if(journey.getId().equals(updateRouterRequest.getJourneyId())) {
+                for (Route route: journey.getRoutes()) {
+                    if(route.getId().equals(updateRouterRequest.getRoutesId())) {
+                        for( OrderModel orderModel: route.getOrders()) {
+                            if(orderModel.getId().equals((long) updateRouterRequest.getOrderId())) {
+                                orderModel.setStatus(updateRouterRequest.getStatus());
+                                if(updateRouterRequest.getStatus().equals("Done")) {
+                                    route.setStatus(route.getStatus()-1);
+                                    if((route.getStatus()-1) == 0) {
+                                        journey.setStatus(journey.getStatus()-1);
+                                        if(journey.getStatus()-1 == 0) {
+                                           results.setStatus(results.getStatus()-1);
+                                        }
+                                    }
+                                }
+                                mongoTemplate.save(results, "delivery_plan");
+                            }
+                        }
+                    }
+                }
+                journeyFinal = journey;
+            }
+        }
+        return journeyFinal;
+    }
 }

@@ -39,6 +39,6 @@ public class DeliveryPlan {
     @Field(name = "is_selected")
     private Boolean isSelected = false;
     private Long vehicleId;
-    private String status;
+    private Integer status;
 
 }

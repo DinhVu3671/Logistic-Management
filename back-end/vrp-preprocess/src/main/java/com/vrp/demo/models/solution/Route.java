@@ -52,6 +52,7 @@ public class Route {
     private List<Bill> bills;
     private double penaltyCost;
     private LinkedHashMap<String, Double> finedRequests = new LinkedHashMap<>();
+    private Integer status;
 
     public void setArcsByCustomers(int startDepotId, List<CustomerModel> customers, int endDepotId, List<NodeModel> nodeModels) {
         List<Arc> arcs = new ArrayList<>();
