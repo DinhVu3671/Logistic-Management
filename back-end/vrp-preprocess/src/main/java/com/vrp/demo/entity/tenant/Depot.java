@@ -30,6 +30,7 @@ public class Depot extends Node {
     private List<Product> products;
 
     public static DepotModel convertToModel(Depot depot) {
+        System.out.println("================" + depot);
         ModelMapper modelMapper = new ModelMapper();
         DepotModel depotModel = modelMapper.map(depot, DepotModel.class);
         for (ProductModel product : depotModel.getProducts()) {

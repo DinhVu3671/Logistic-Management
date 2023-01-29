@@ -28,6 +28,7 @@ public class ProductModel extends BaseModel{
     private List<ProductModel> excludingProducts;
     private GoodsGroupModel goodsGroup;
 
+    private String avatar;
 
     public static Product convertToEntity(ProductModel productModel) {
         ModelMapper modelMapper = new ModelMapper();

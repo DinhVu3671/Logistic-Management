@@ -47,11 +47,15 @@ public class OrderController {
     }
 
     @PostMapping(value = {"/create"})
+    public ResponseEntity<ResponseData> create(@RequestBody OrderModelCreate orderModelCreate) throws CustomException {
+        OrderModel orderModel = orderService.create(orderModelCreate);
+        return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
+    }
+    @PostMapping(value = {""})
     public ResponseEntity<ResponseData> create(@RequestBody OrderModel orderModel) throws CustomException {
         orderModel = orderService.create(orderModel);
         return responsePreProcessor.buildResponseEntity(HttpStatus.OK, Code.SUCCESS, orderModel);
     }
-
 
     @PostMapping(value = {"/update"})
     public ResponseEntity<ResponseData> update(@RequestBody OrderModel orderModel) throws CustomException {

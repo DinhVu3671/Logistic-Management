@@ -69,6 +69,7 @@ public class Order extends BaseEntity {
         }
         orderModel.setOrderItems(orderItemModels);
         orderModel.setGoodsGroups(goodsGroups);
+        orderModel.setStatus(order.getStatus());
         if (order.getDepot() != null)
             orderModel.setDepot(Depot.convertToModel(order.getDepot()));
         return orderModel;
