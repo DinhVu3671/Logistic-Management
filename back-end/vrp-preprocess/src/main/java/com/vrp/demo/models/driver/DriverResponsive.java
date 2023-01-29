@@ -2,6 +2,7 @@ package com.vrp.demo.models.driver;
 
 import com.vrp.demo.entity.common.User;
 import com.vrp.demo.entity.tenant.Vehicle;
+import com.vrp.demo.models.VehicleModel;
 import com.vrp.demo.models.search.BaseSearch;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,5 +15,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DriverResponsive {
     private User user;
-    private Vehicle vehicle;
+    private VehicleModel vehicleModel;
 }

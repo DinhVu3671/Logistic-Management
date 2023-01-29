@@ -139,7 +139,7 @@ public class DriverServiceImp extends BaseServiceImp<VehicleRepository, Vehicle,
         driverResponsive.setUser(user);
 
         Vehicle vehicle = vehicleRepository.getInfoByUserId(idUser);
-        driverResponsive.setVehicle(vehicle);
+        driverResponsive.setVehicleModel(Vehicle.convertToModel(vehicle));
 
         return driverResponsive;
     }
